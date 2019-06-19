@@ -1,13 +1,16 @@
-version: '3'
+version: '3.7'
 services:
   mongodb:
         image: mongo:latest
-        container_name: "shopperstar-prod"
+        container_name: "mongo-prod"
         environment:
-          - MONGO_DATA_DIR: /data/db
-          - MONGODB_USER: "${DB_USER}"
-          - MONGODB_PASS: "${DB_PASS}" 
+                - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USER}
+                - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+                - MONGODB_INITDB_DATABASE=${DB_NAME}
+                - DB_NON_ROOT_USER=${DB_NON_ROOT_USER}
+                - DB_NON_ROOT_PASSWORD=${DB_NON_ROOT_PASSWORD}
         volumes:
           - ./data/db:/data/db
+          - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
         ports:
             - 27017:27017
