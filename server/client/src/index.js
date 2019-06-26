@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap';
 import "./components/css/cart_responsive.css";
 import "./components/css/cart.css";
+import "./components/css/font-awesome.min.css";
 import "./components/css/categories_responsive.css";
 import "./components/css/categories.css";
 import "./components/css/checkout_responsive.css";
@@ -26,7 +27,6 @@ import reducers from './reducers';
 
 const store = createStore(() => [], {}, applyMiddleware());
 
-ReactDOM.render(
-    <Provider store={store}><App /></Provider>, 
+ReactDOM.render( <Provider store = { store } > < App /> </Provider>, 
     document.querySelector('#root')
 );
