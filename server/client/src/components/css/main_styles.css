@@ -463,11 +463,11 @@ section {
 
 .header_extra {}
 
-.shopping_cart {
+.upper_left_panel {
     display: inline-block;
 }
 
-.shopping_cart a svg {
+.upper_left_panel a svg {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -479,13 +479,13 @@ section {
     transition: all 200ms ease;
 }
 
-.shopping_cart a:hover svg,
-.shopping_cart a:hover div {
+.upper_left_panel a:hover svg,
+.upper_left_panel a:hover div {
     fill: #e95a5a;
     color: #e95a5a;
 }
 
-.shopping_cart a div {
+.upper_left_panel a div {
     display: inline-block;
     vertical-align: middle;
     font-size: 14px;
@@ -499,7 +499,7 @@ section {
     transition: all 200ms ease;
 }
 
-.shopping_cart a div span {
+.upper_left_panel a div span {
     margin-left: 4px;
 }
 
