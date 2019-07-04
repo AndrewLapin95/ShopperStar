@@ -826,6 +826,7 @@ section {
     height: 950px;
     background: #FFFFFF;
     z-index: 2;
+    padding-bottom: 30px;
 }
 
 .home_slider_container {

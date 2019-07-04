@@ -1,14 +1,9 @@
 import React, { Component } from 'react'; 
 import MainNav from './MainNav';
-import Hamburger from './Hamburger';
 import UpperLeftPanel from './UpperLeftPanel';
+import Hamburger from './Hamburger';
 
 class Header extends Component {
-    
-    onHamburgerClick = async term => {
-        console.log("Clicked!");
-    }
-    
     render() { 
         return (
             <header className="header">
@@ -20,7 +15,7 @@ class Header extends Component {
                                     <div className="logo"><a href="/">ShopperStar</a></div>
                                     <MainNav />
                                     <UpperLeftPanel />
-                                    <Hamburger onClick={this.onHamburgerClick} />
+                                    <Hamburger />
                                 </div>
                             </div>
                         </div>
