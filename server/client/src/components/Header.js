@@ -1,7 +1,6 @@
 import React, { Component } from 'react'; 
 import MainNav from './MainNav';
 import UpperLeftPanel from './UpperLeftPanel';
-import Hamburger from './Hamburger';
 
 class Header extends Component {
     render() { 
@@ -15,7 +14,6 @@ class Header extends Component {
                                     <div className="logo"><a href="/">ShopperStar</a></div>
                                     <MainNav />
                                     <UpperLeftPanel />
-                                    <Hamburger />
                                 </div>
                             </div>
                         </div>

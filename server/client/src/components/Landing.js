@@ -29,7 +29,7 @@ class Landing extends React.Component {
                                 <div class="row">
                                     <div class="col">
                                         <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-                                            <div class="home_slider_title">A new Online Shop experience.</div>
+                                            <div class="home_slider_title">A new Online Shop experience</div>
                                             <div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
                                             <div class="button button_light home_button"><a href="#">Shop Now</a></div>
                                         </div>
@@ -113,41 +113,6 @@ class Landing extends React.Component {
                                             <div className="product_price">$670</div>
                                         </div>
                                     </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product5} alt="" /></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product6} alt="" /></div>
-                                        <div className="product_extra product_hot"><a href="categories.html">Hot</a></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product7} alt="" /></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product8} alt="" /></div>
-                                        <div className="product_extra product_sale"><a href="categories.html">Hot</a></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
