@@ -5,7 +5,7 @@ class UpperLeftPanel extends React.Component {
         return (
             <div className="header_extra ml-auto">
                 <div className="upper_left_panel">
-                    <a href="cart.html">
+                    <a href="/cart">
                         <div><i className="far fa-shopping-cart fa-lg"></i></div>
                         <div>(0)</div>
                     </a>
