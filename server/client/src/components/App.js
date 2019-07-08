@@ -9,6 +9,7 @@ import Products from "./Products"
 import Cart from "./Cart";
 import Checkout from "./Checkout";
 import ProductDetailed from "./ProductDetailed";
+import ReturnPage from "./ReturnPage";
 
 import "./css/main_styles.css";
 import "./css/product.css";
@@ -39,6 +40,7 @@ class App extends React.Component {
                     <Route exact path="/cart" component={Cart} />
                     <Route exact path="/product_detailed" component={ProductDetailed} />
                     <Route exact path="/checkout" component={Checkout} />
+                    <Route exact path="/return" component={ReturnPage} />
                 </div>
                 </BrowserRouter>
             </div>
