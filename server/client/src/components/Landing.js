@@ -1,4 +1,7 @@
-import React from 'react'; 
+import React from 'react';
+
+import Product from "./Product";
+import Newsletter from "./Newsletter";
 
 import backgroundImage from "./images/home_slider_1.jpg"; 
 import discountImage from "./images/discount.png"; 
@@ -21,17 +24,17 @@ class Landing extends React.Component {
     render() { 
         return (
             <div className="super_container">
-                <div class="home">
-                    <div class="home_container">
-                        <div class="home_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                        <div class="home_content_container">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-                                            <div class="home_slider_title">A new Online Shop experience</div>
-                                            <div class="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
-                                            <div class="button button_light home_button"><a href="#">Shop Now</a></div>
+                <div className="home">
+                    <div className="home_container">
+                        <div className="home_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                        <div className="home_content_container">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col">
+                                        <div className="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                            <div className="home_slider_title">A new Online Shop experience</div>
+                                            <div className="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
+                                            <div className="button button_light home_button"><a href="/products">Shop Now</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -79,40 +82,10 @@ class Landing extends React.Component {
                             <div className="col">
 
                                 <div className="product_grid">
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product1} alt="" /></div>
-                                        <div className="product_extra product_new"><a href="categories.html">New</a></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product2} alt="" /></div>
-                                        <div className="product_extra product_sale"><a href="categories.html">Sale</a></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product3} alt="" /></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="product">
-                                        <div className="product_image"><img src={Product4} alt="" /></div>
-                                        <div className="product_content">
-                                            <div className="product_title"><a href="product.html">Smart Phone</a></div>
-                                            <div className="product_price">$670</div>
-                                        </div>
-                                    </div>
+                                    <Product image={Product1} extra="product_new" extraTitle="New" title="SmartPhone" price="$1000" />
+                                    <Product image={Product2} extra="product_sale" extraTitle="New" title="SmartPhone" price="$999" />
+                                    <Product image={Product3} title="Smart Phone" price="$670"/>
+                                    <Product image={Product4} title="Smart Phone" price="$999"/>
                                 </div>
                             </div>
                         </div>
@@ -172,32 +145,10 @@ class Landing extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <div className="newsletter">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <div className="newsletter_border"></div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-8 offset-lg-2">
-                                <div className="newsletter_content text-center">
-                                    <div className="newsletter_title">Subscribe to our newsletter</div>
-                                    <div className="newsletter_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros</p>
-                                    </div>
-                                    <div className="newsletter_form_container">
-                                        <form action="#" id="newsletter_form" className="newsletter_form">
-                                            <input type="email" className="newsletter_input" required="required" />
-                                            <button className="newsletter_button trans_200"><span>Subscribe</span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <Newsletter newsletterTitle="Subscribe to our newsletter"
+                            newsletterText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros"
+                            newsletterButtonText="Subscribe" />
             </div>
         ); 
     }

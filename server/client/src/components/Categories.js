@@ -1,4 +1,6 @@
 import React from "react"; 
+import Product from "./Product";
+import Newsletter from "./Newsletter";
 
 import Icon1 from "./images/icon_1.svg"; 
 import Icon2 from "./images/icon_2.svg"; 
@@ -23,34 +25,10 @@ class Categories extends React.Component {
                             <div class="col">
 
                                 <div class="product_grid">
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product1} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Phones</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product2} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Laptops</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product3} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Cameras</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product4} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Headphones</a></div>
-                                        </div>
-                                    </div>
+                                    <Product image={Product1} title="Phones" />
+                                    <Product image={Product2} title="Laptops" />
+                                    <Product image={Product3} title="Cameras" />
+                                    <Product image={Product4} title="Headphones" />
                                 </div>
 
                             </div>
@@ -58,31 +36,9 @@ class Categories extends React.Component {
                     </div>
                 </div>
 
-                <div class="newsletter">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <div class="newsletter_border"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8 offset-lg-2">
-                                <div class="newsletter_content text-center">
-                                    <div class="newsletter_title">Subscribe to our newsletter</div>
-                                    <div class="newsletter_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros</p>
-                                    </div>
-                                    <div class="newsletter_form_container">
-                                        <form action="#" id="newsletter_form" class="newsletter_form">
-                                            <input type="email" class="newsletter_input" required="required" />
-                                            <button class="newsletter_button trans_200"><span>Subscribe</span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Newsletter newsletterTitle="Subscribe to our newsletter"
+                            newsletterText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros"
+                            newsletterButtonText="Subscribe" />
             </div>
         ) 
     } 

@@ -11,20 +11,6 @@ import Checkout from "./Checkout";
 import ProductDetailed from "./ProductDetailed";
 import ReturnPage from "./ReturnPage";
 
-import "./css/main_styles.css";
-import "./css/product.css";
-import "./css/product_responsive.css";
-import "./css/cart.css";
-import "./css/cart_responsive.css";
-import "./css/categories_responsive.css";
-import "./css/categories.css";
-import "./css/checkout_responsive.css";
-import "./css/checkout.css";
-import "./css/contact_responsive.css";
-import "./css/contact.css";
-import "./css/main_styles.css";
-import "./css/responsive.css";
-
 
 class App extends React.Component {
     render() {

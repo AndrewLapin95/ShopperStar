@@ -3,11 +3,9 @@ import React from 'react';
 class Contact extends React.Component { 
     render() { 
         return (
-
             <div className="contact">
                 <div className="container">
                     <div className="row">
-
                         <div className="col-lg-8 contact_col">
                             <div className="get_in_touch">
                                 <div className="section_title">Get in Touch</div>
