@@ -1,4 +1,5 @@
 import React from "react"; 
+import Product from "./Product";
 
 import Icon1 from "./images/icon_1.svg"; 
 import Icon2 from "./images/icon_2.svg"; 
@@ -24,33 +25,10 @@ class Categories extends React.Component {
 
                                 <div class="product_grid">
 
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product1} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Phones</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product2} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Laptops</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product3} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Cameras</a></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product">
-                                        <div class="product_image"><img src={Product4} alt="" /></div>
-                                        <div class="product_content">
-                                            <div class="product_title"><a href="/products">Headphones</a></div>
-                                        </div>
-                                    </div>
+                                    <Product image={Product1} title="Phones" />
+                                    <Product image={Product2} title="Laptops" />
+                                    <Product image={Product3} title="Cameras" />
+                                    <Product image={Product4} title="Headphones" />
                                 </div>
 
                             </div>

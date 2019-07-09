@@ -143,7 +143,7 @@ class Checkout extends React.Component {
                                     </div>
 
                                     <div class="order_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra temp or so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</div>
-                                    <div class="button order_button"><a href="#">Place Order</a></div>
+                                    <div class="button order_button"><a href="/return">Place Order</a></div>
                                 </div>
                             </div>
                         </div>
