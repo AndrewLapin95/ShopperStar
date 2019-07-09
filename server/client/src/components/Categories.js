@@ -1,5 +1,6 @@
 import React from "react"; 
 import Product from "./Product";
+import Newsletter from "./Newsletter";
 
 import Icon1 from "./images/icon_1.svg"; 
 import Icon2 from "./images/icon_2.svg"; 
@@ -24,7 +25,6 @@ class Categories extends React.Component {
                             <div class="col">
 
                                 <div class="product_grid">
-
                                     <Product image={Product1} title="Phones" />
                                     <Product image={Product2} title="Laptops" />
                                     <Product image={Product3} title="Cameras" />
