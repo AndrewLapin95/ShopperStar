@@ -918,13 +918,7 @@ section {
     font-size: 24px;
     font-weight: 600;
     color: #1b1b1b;
-}
-
-.section_subtitle {
-    font-size: 14px;
-    font-weight: 400;
-    color: #6c6a74;
-    margin-top: 3px;
+    padding-top: 30px;
 }
 
 .checkout_form_container {

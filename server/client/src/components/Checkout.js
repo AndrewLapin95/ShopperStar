@@ -13,7 +13,14 @@ class Checkout extends React.Component {
                             <div class="col-lg-6">
                                 <div class="billing checkout_section">
                                     <div class="section_title">Billing Address</div>
-                                    <div class="section_subtitle">Enter your address info</div>
+                                    <div class="checkout_extra">
+                                        <div>
+                                            <input type="checkbox" id="saved_address" name="regular_checkbox" class="regular_checkbox" />
+                                            <label for="checkbox_account"><img src={Check} alt="" /></label>
+                                            <span class="checkbox_title">Use saved address (address goes here)</span>
+                                        </div>
+                                    </div>
+                                    <div class="section_title">Enter your address info</div>
                                     <div class="checkout_form_container">
                                         <form action="#" id="checkout_form" class="checkout_form">
                                             <div class="row">
@@ -79,19 +86,9 @@ class Checkout extends React.Component {
                                             </div>
                                             <div class="checkout_extra">
                                                 <div>
-                                                    <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked" />
-                                                    <label for="checkbox_terms"><img src={Check} alt="" /></label>
-                                                    <span class="checkbox_title">Terms and conditions</span>
-                                                </div>
-                                                <div>
                                                     <input type="checkbox" id="checkbox_account" name="regular_checkbox" class="regular_checkbox" />
                                                     <label for="checkbox_account"><img src={Check} alt="" /></label>
-                                                    <span class="checkbox_title">Create an account</span>
-                                                </div>
-                                                <div>
-                                                    <input type="checkbox" id="checkbox_newsletter" name="regular_checkbox" class="regular_checkbox" />
-                                                    <label for="checkbox_newsletter"><img src={Check} alt="" /></label>
-                                                    <span class="checkbox_title">Subscribe to our newsletter</span>
+                                                    <span class="checkbox_title">Save address</span>
                                                 </div>
                                             </div>
                                         </form>

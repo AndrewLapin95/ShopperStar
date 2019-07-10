@@ -5,10 +5,8 @@ import Newsletter from "./Newsletter";
 import IconBoxes from "./IconBoxes";
 import HomeContainer from "./HomeContainer";
 import SecondLandingRow from "./SecondLandingRow";
-
-import discountImage from "./images/discount.png"; 
+ 
 import amazingImage from "./images/avds_xl.jpg";
-import backgroundImage from "./images/home_slider_1.jpg";
 
 import Product1 from "./images/product_1.jpg"; 
 import Product2 from "./images/product_2.jpg"; 
