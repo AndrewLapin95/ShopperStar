@@ -26,4 +26,4 @@ class SearchMenu extends React.Component {
     } 
 } 
 
-export default SeachMenu;
+export default SearchMenu;

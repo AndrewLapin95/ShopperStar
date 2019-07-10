@@ -2,14 +2,13 @@ import React from 'react';
 
 import Product from "./Product";
 import Newsletter from "./Newsletter";
+import IconBoxes from "./IconBoxes";
+import HomeContainer from "./HomeContainer";
+import SecondLandingRow from "./SecondLandingRow";
 
-import backgroundImage from "./images/home_slider_1.jpg"; 
 import discountImage from "./images/discount.png"; 
-import amazingImage from "./images/avds_xl.jpg"; 
-
-import Icon1 from "./images/icon_1.svg"; 
-import Icon2 from "./images/icon_2.svg";
-import Icon3 from "./images/icon_3.svg"; 
+import amazingImage from "./images/avds_xl.jpg";
+import backgroundImage from "./images/home_slider_1.jpg";
 
 import Product1 from "./images/product_1.jpg"; 
 import Product2 from "./images/product_2.jpg"; 
@@ -24,57 +23,9 @@ class Landing extends React.Component {
     render() { 
         return (
             <div className="super_container">
-                <div className="home">
-                    <div className="home_container">
-                        <div className="home_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                        <div className="home_content_container">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
-                                            <div className="home_slider_title">A new Online Shop experience</div>
-                                            <div className="home_slider_subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</div>
-                                            <div className="button button_light home_button"><a href="/products">Shop Now</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="avds">
-                    <div className="avds_container d-flex flex-lg-row flex-column align-items-start justify-content-between">
-                        <div className="avds_small">
-                            <div className="avds_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                            <div className="avds_small_inner">
-                                <div className="avds_discount_container">
-                                    <img src={discountImage} alt="" />
-                                    <div>
-                                        <div className="avds_discount">
-                                            <div>20<span>%</span></div>
-                                            <div>Discount</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="avds_small_content">
-                                    <div className="avds_title">Smart Phones</div>
-                                    <div className="avds_link"><a href="categories.html">See More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="avds_large">
-                            <div className="avds_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                            <div className="avds_large_container">
-                                <div className="avds_large_content">
-                                    <div className="avds_title">Professional Cameras</div>
-                                    <div className="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viver ra velit venenatis fermentum luctus.</div>
-                                    <div className="avds_link avds_link_large"><a href="categories.html">See More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <HomeContainer />
+                <SecondLandingRow />
 
                 <div className="products">
                     <div className="container">
@@ -91,7 +42,7 @@ class Landing extends React.Component {
                         </div>
                     </div>
                 </div>
-
+                
                 <div className="avds_xl">
                     <div className="container">
                         <div className="row">
@@ -109,42 +60,7 @@ class Landing extends React.Component {
                     </div>
                 </div>
 
-                <div className="icon_boxes">
-                    <div className="container">
-                        <div className="row icon_box_row">
-                            <div className="col-lg-4 icon_box_col">
-                                <div className="icon_box">
-                                    <div className="icon_box_image"><img src={Icon1} alt="" /></div>
-                                    <div className="icon_box_title">Free Shipping Worldwide</div>
-                                    <div className="icon_box_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-lg-4 icon_box_col">
-                                <div className="icon_box">
-                                    <div className="icon_box_image"><img src={Icon2} alt="" /></div>
-                                    <div className="icon_box_title">Free Returns</div>
-                                    <div className="icon_box_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-lg-4 icon_box_col">
-                                <div className="icon_box">
-                                    <div className="icon_box_image"><img src={Icon3} alt="" /></div>
-                                    <div className="icon_box_title">24h Fast Support</div>
-                                    <div className="icon_box_text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <IconBoxes />
                 
                 <Newsletter newsletterTitle="Subscribe to our newsletter"
                             newsletterText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros"

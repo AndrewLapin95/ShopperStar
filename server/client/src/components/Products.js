@@ -1,5 +1,6 @@
 import React from "react"; 
-import Product from "./Product";
+import Product from "./Product"
+import SearchMenu from "./SearchMenu";
 
 import Icon1 from "./images/icon_1.svg"; 
 import Icon2 from "./images/icon_2.svg"; 
@@ -19,27 +20,14 @@ class Products extends React.Component {
         return (
             <div className="super_container">
                 <div class="products">
-                    <div class="search_menu">
-                        <div class="row">
-                            <div class="col-lg-8 offset-lg-2">
-                                <div class="search_menu_content text-center">
-                                    <div class="search_menu_text">What are you looking for today?</div>
-                                    <div class="search_menu_form_container">
-                                        <form action="#" id="search_menu_form" class="search_menu_form">
-                                            <input type="text" class="search_menu_input" required="required" />
-                                            <button class="search_menu_button trans_200"><span>Search</span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    <SearchMenu text="What are you looking for today?"
+                                button="Search" />
+
                     <div class="container">
                         <div class="row">
                             <div class="col">
-
                                 <div class="product_grid">
-                                    
                                     <Product image={Product1} title="Smart Phone"/>
                                     <Product image={Product2} title="Laptops"/>
                                     <Product image={Product3} title="Cameras"/>
@@ -48,7 +36,6 @@ class Products extends React.Component {
                                     <Product image={Product6} title="Headphones"/>
                                     <Product image={Product7} title="Headphones"/>
                                     <Product image={Product8} title="Headphones"/>
-
                                 </div>
                             </div>
                         </div>
