@@ -1,6 +1,7 @@
 import React from "react"; 
 import Product from "./Product"
-import SearchMenu from "./SearchMenu";
+import SearchMenu from "./SearchMenu"
+import Newsletter from "./Newsletter"
 
 import Icon1 from "./images/icon_1.svg"; 
 import Icon2 from "./images/icon_2.svg"; 
@@ -40,6 +41,11 @@ class Products extends React.Component {
                             </div>
                         </div>
                     </div>
+
+                    <Newsletter newsletterTitle="Subscribe to our newsletter"
+                            newsletterText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros"
+                            newsletterButtonText="Subscribe" />
+
                 </div>
             </div>
         ) 
