@@ -11,7 +11,7 @@ class Product extends React.Component {
 
         let priceElement;
 
-        if (this.props.price != "") {
+        if (this.props.price !== "") {
             priceElement = <div className="product_price">{this.props.price}</div>;
         } else {
             priceElement = "";
@@ -23,7 +23,7 @@ class Product extends React.Component {
     verifyExtraElement() {
         let extraElement;
 
-        if (this.props.extra != "") {
+        if (this.props.extra !== "") {
             extraElement = <div className={"product_extra " + this.props.extra}>
                                 <a href="categories.html">{this.props.extraTitle}</a>
                             </div>;
