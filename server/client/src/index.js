@@ -1,4 +1,5 @@
 import 'jquery';
+import reduxThunk from 'redux-thunk';
 import Popper from 'popper.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,7 +26,8 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './components/App';
 import reducers from './reducers';
 
-const store = createStore(() => [], {}, applyMiddleware());
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render( <Provider store = { store } > < App /> </Provider>, 
     document.querySelector('#root')

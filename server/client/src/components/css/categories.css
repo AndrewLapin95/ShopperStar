@@ -334,7 +334,7 @@ section {
 .header_container {
     width: 100%;
     z-index: 1;
-    background: #FFFFFF;
+    background: rgb(255, 0, 0);
 }
 
 .header_content {

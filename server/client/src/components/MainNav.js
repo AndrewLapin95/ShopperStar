@@ -5,14 +5,7 @@ class MainNav extends React.Component {
         return (
             <nav className="main_nav">
                 <ul>
-                    <li className="hassubs active">
-                        <a href="/">Home</a>
-                        <ul>
-                            <li><a href="/categories">Categories</a></li>
-                            <li><a href="/products">Product</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
                     <li className="hassubs">
                         <a href="/categories">Categories</a>
