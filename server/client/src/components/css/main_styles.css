@@ -338,12 +338,12 @@ section {
 .header_container {
     width: 100%;
     z-index: 1;
-    background: #FFFFFF;
+    background: rgb(255, 255, 255);
 }
 
 .header_content {
     width: 100%;
-    height: 130px;
+    height: 70px;
     -webkit-transition: all 200ms ease;
     -moz-transition: all 200ms ease;
     -ms-transition: all 200ms ease;
@@ -353,21 +353,6 @@ section {
 
 .header.scrolled .header_content {
     height: 70px;
-}
-
-.logo a {
-    font-size: 30px;
-    font-weight: 700;
-    color: #1b1b1b;
-    -webkit-transition: all 200ms ease;
-    -moz-transition: all 200ms ease;
-    -ms-transition: all 200ms ease;
-    -o-transition: all 200ms ease;
-    transition: all 200ms ease;
-}
-
-.header.scrolled .logo a {
-    font-size: 24px;
 }
 
 .main_nav {
@@ -1099,8 +1084,14 @@ section {
 .products {
     width: 100%;
     background: #FFFFFF;
-    padding-top: 99px;
+    padding-top: 89px;
     z-index: 2;
+}
+
+.products_title {
+    font-size: 30px;
+    font-weight: 500;
+    color: #1b1b1b;
 }
 
 .product {
@@ -1108,8 +1099,13 @@ section {
     margin-bottom: 59px;
 }
 
+.product_grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
 .product_image {
-    width: 100%;
+    width: 260px;
 }
 
 .product_image img {
