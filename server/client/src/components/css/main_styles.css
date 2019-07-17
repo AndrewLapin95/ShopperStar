@@ -1100,6 +1100,7 @@ section {
 }
 
 .product_grid {
+    margin-top: 60px;
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
