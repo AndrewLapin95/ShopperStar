@@ -364,10 +364,6 @@ section {
     position: relative;
 }
 
-.main_nav>ul>li:not(:last-child) {
-    margin-right: 46px;
-}
-
 .main_nav>ul>li>a {
     font-size: 16px;
     font-weight: 600;

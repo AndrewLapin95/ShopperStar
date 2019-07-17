@@ -74,9 +74,6 @@
     .search {
         margin-left: 25px;
     }
-    .main_nav>ul>li:not(:last-child) {
-        margin-right: 40px;
-    }
 }
 
 
@@ -102,13 +99,6 @@
     .header_container {
         padding-left: 15px;
         padding-right: 15px;
-    }
-    .main_nav,
-    .header_social {
-        display: none;
-    }
-    .search {
-        display: none;
     }
     .hamburger {
         display: inline-block;
