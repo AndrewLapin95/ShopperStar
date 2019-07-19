@@ -2,20 +2,15 @@ import React from "react";
 import Product from "./Product";
 import Newsletter from "./Newsletter";
 
-import Icon1 from "./images/icon_1.svg"; 
-import Icon2 from "./images/icon_2.svg"; 
-import Icon3 from "./images/icon_3.svg"; 
+class Categories extends React.Component {
+    constructor(props) {
+        super(props);
+        this.firstProductUrl = "https://shopperstar.s3.amazonaws.com/product_1.jpg";
+        this.secondProductUrl = "https://shopperstar.s3.amazonaws.com/product_2.jpg";
+        this.thirdProductUrl = "https://shopperstar.s3.amazonaws.com/product_3.jpg";
+        this.fourthProductUrl = "https://shopperstar.s3.amazonaws.com/product_4.jpg";
+    }
 
-import Product1 from "./images/product_1.jpg"; 
-import Product2 from "./images/product_2.jpg"; 
-import Product3 from "./images/product_3.jpg"; 
-import Product4 from "./images/product_4.jpg"; 
-import Product5 from "./images/product_5.jpg"; 
-import Product6 from "./images/product_6.jpg"; 
-import Product7 from "./images/product_7.jpg"; 
-import Product8 from "./images/product_8.jpg";
-
-class Categories extends React.Component { 
     render() { 
         return (
             <div className="super_container">
@@ -25,10 +20,10 @@ class Categories extends React.Component {
                             <div class="col">
 
                                 <div class="product_grid">
-                                    <Product image={Product1} title="Phones" />
-                                    <Product image={Product2} title="Laptops" />
-                                    <Product image={Product3} title="Cameras" />
-                                    <Product image={Product4} title="Headphones" />
+                                    <Product image={this.firstProductUrl} title="Phones" />
+                                    <Product image={this.secondProductUrl} title="Laptops" />
+                                    <Product image={this.thirdProductUrl} title="Cameras" />
+                                    <Product image={this.fourthProductUrl} title="Headphones" />
                                 </div>
 
                             </div>

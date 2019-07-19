@@ -8,6 +8,8 @@ import "./components/css/cart.css";
 import "./components/css/font-awesome.min.css";
 import "./components/css/categories.css";
 import "./components/css/checkout.css";
+import "./components/css/product.css";
+import "./components/css/product_responsive.css";
 import "./components/css/contact.css";
 import "./components/css/cart_responsive.css";
 import "./components/css/categories_responsive.css";

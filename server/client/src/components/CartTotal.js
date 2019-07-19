@@ -22,7 +22,7 @@ class CartTotal extends React.Component {
                         </li>
                     </ul>
                 </div>
-                <div class="button checkout_button"><a href="#">Proceed to checkout</a></div>
+                <div class="button checkout_button"><a href="/checkout">Proceed to checkout</a></div>
             </div>
         ); 
     } 
