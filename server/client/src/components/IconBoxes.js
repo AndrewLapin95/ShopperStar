@@ -1,15 +1,6 @@
 import React from "react";
 
-import Icon1 from "./images/icon_1.svg"; 
-import Icon2 from "./images/icon_2.svg";
-import Icon3 from "./images/icon_3.svg"; 
-
 class IconBox extends React.Component {
-    
-    constructor(props) {
-        super(props);
-    }
-    
     render() {
         return (
             <div className="col-lg-4 icon_box_col">
@@ -26,20 +17,28 @@ class IconBox extends React.Component {
 }
 
 class IconBoxes extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.firstIcon = "https://shopperstar.s3.amazonaws.com/icon_1.svg";
+        this.secondIcon = "https://shopperstar.s3.amazonaws.com/icon_2.svg";
+        this.thirdIcon = "https://shopperstar.s3.amazonaws.com/icon_3.svg";
+    }
+
     render() {
         return (
             <div className="icon_boxes">
                     <div className="container">
                         <div className="row icon_box_row">
-                            <IconBox image={Icon1} 
+                            <IconBox image={this.firstIcon} 
                                      title="Free Shipping Worldwide"
                                      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie." />
 
-                            <IconBox image={Icon2} 
+                            <IconBox image={this.secondIcon} 
                                      title="Free Returns"
                                      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie." />
 
-                            <IconBox image={Icon3} 
+                            <IconBox image={this.thirdIcon} 
                                      title="24h Fast Support"
                                      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie." />
                         </div>

@@ -1,18 +1,20 @@
 import React from 'react'; 
 
-import backgroundImage from "./images/home_slider_1.jpg";
-import discountImage from "./images/discount.png";
-
 class SecondLandingRow extends React.Component { 
+    constructor(props) {
+        super(props);
+        this.discountImageUrl = "https://shopperstar.s3.amazonaws.com/discount.png";
+    }
+
     render() { 
         return (
             <div className="avds">
                 <div className="avds_container d-flex flex-lg-row flex-column align-items-start justify-content-between">
                     <div className="avds_small">
-                        <div className="avds_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                        <div className="avds_background" style={{ backgroundImage: `url(https://shopperstar.s3.amazonaws.com/avds_small.jpg)` }}></div>
                         <div className="avds_small_inner">
                             <div className="avds_discount_container">
-                                <img src={discountImage} alt="" />
+                                <img src={this.discountImageUrl} alt="" />
                                 <div>
                                     <div className="avds_discount">
                                         <div>20<span>%</span></div>
@@ -27,7 +29,7 @@ class SecondLandingRow extends React.Component {
                         </div>
                     </div>
                     <div className="avds_large">
-                        <div className="avds_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                        <div className="avds_background" style={{ backgroundImage: `url(https://shopperstar.s3.amazonaws.com/avds_large.jpg)` }}></div>
                         <div className="avds_large_container">
                             <div className="avds_large_content">
                                 <div className="avds_title">Professional Cameras</div>

@@ -1,10 +1,5 @@
 import React from 'react'; 
 
-import Detail1 from "./images/details_1.jpg"; 
-import Detail2 from "./images/details_2.jpg"; 
-import Detail3 from "./images/details_3.jpg"; 
-import Detail4 from "./images/details_4.jpg"; 
-
 class DetailsContent extends React.Component { 
     render() { 
         return (
@@ -72,6 +67,14 @@ class DetailsImage extends React.Component {
 
 class ProductDetailed extends React.Component { 
     
+    constructor(props) {
+        super(props);
+        this.firstProductUrl = "https://shopperstar.s3.amazonaws.com/details_1.jpg";
+        this.secondProductUrl = "https://shopperstar.s3.amazonaws.com/details_2.jpg";
+        this.thirdProductUrl = "https://shopperstar.s3.amazonaws.com/details_3.jpg";
+        this.fourthProductUrl = "https://shopperstar.s3.amazonaws.com/details_4.jpg";
+    }
+
     render() { 
         return (
             <div class="super_container">
@@ -80,10 +83,10 @@ class ProductDetailed extends React.Component {
                         <div class="row details_row">
 
                             <div class="col-lg-6">
-                                <DetailsImage image1={Detail1}
-                                              image2={Detail2}
-                                              image3={Detail3}
-                                              image4={Detail4} />
+                                <DetailsImage image1={this.firstProductUrl}
+                                              image2={this.secondProductUrl}
+                                              image3={this.thirdProductUrl}
+                                              image4={this.fourthProductUrl} />
                             </div>
 
                             <div class="col-lg-6">

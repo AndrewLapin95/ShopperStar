@@ -5,19 +5,16 @@ import Newsletter from "./Newsletter";
 import IconBoxes from "./IconBoxes";
 import HomeContainer from "./HomeContainer";
 import SecondLandingRow from "./SecondLandingRow";
- 
-import amazingImage from "./images/avds_xl.jpg";
 
-import Product1 from "./images/product_1.jpg"; 
-import Product2 from "./images/product_2.jpg"; 
-import Product3 from "./images/product_3.jpg"; 
-import Product4 from "./images/product_4.jpg"; 
-import Product5 from "./images/product_5.jpg";
-import Product6 from "./images/product_6.jpg"; 
-import Product7 from "./images/product_7.jpg"; 
-import Product8 from "./images/product_8.jpg"; 
+class Landing extends React.Component {
+    constructor(props) {
+        super(props);
+        this.firstProductUrl = "https://shopperstar.s3.amazonaws.com/product_1.jpg";
+        this.secondProductUrl = "https://shopperstar.s3.amazonaws.com/product_2.jpg";
+        this.thirdProductUrl = "https://shopperstar.s3.amazonaws.com/product_3.jpg";
+        this.fourthProductUrl = "https://shopperstar.s3.amazonaws.com/product_4.jpg";
+    }
 
-class Landing extends React.Component { 
     render() { 
         return (
             <div className="super_container">
@@ -31,10 +28,10 @@ class Landing extends React.Component {
                             <div className="col">
 
                                 <div className="product_grid">
-                                    <Product image={Product1} extra="product_new" extraTitle="New" title="SmartPhone" price="$1000" />
-                                    <Product image={Product2} extra="product_sale" extraTitle="New" title="SmartPhone" price="$999" />
-                                    <Product image={Product3} title="Smart Phone" price="$670"/>
-                                    <Product image={Product4} title="Smart Phone" price="$999"/>
+                                    <Product image={this.firstProductUrl} extra="product_new" extraTitle="New" title="SmartPhone" price="$1000" />
+                                    <Product image={this.secondProductUrl} extra="product_sale" extraTitle="New" title="SmartPhone" price="$999" />
+                                    <Product image={this.thirdProductUrl} title="Smart Phone" price="$670"/>
+                                    <Product image={this.fourthProductUrl} title="Smart Phone" price="$999"/>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +43,7 @@ class Landing extends React.Component {
                         <div className="row">
                             <div className="col">
                                 <div className="avds_xl_container clearfix">
-                                    <div className="avds_xl_background" style={{ backgroundImage: `url(${amazingImage})` }}></div>
+                                    <div className="avds_xl_background" style={{ backgroundImage: `url("https://shopperstar.s3.amazonaws.com/avds_xl.jpg")` }}></div>
                                     <div className="avds_xl_content">
                                         <div className="avds_title">Amazing Devices</div>
                                         <div className="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus.</div>
