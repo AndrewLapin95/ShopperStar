@@ -1,10 +1,9 @@
 import React from "react"; 
 
-import Cart1 from "./images/cart_1.jpg"; 
-
 class CartItem extends React.Component {
     constructor(props) {
         super(props);
+        this.cartImageUrl = "https://shopperstar.s3.amazonaws.com/cart_1.jpg";
     }
     
     render() { 
@@ -60,7 +59,7 @@ class CartSummarisation extends React.Component {
                     </div>
                 </div>
                 
-                <CartItem image={Cart1}
+                <CartItem image={this.cartImageUrl }
                           itemName="Smart Phone Deluxe Edition"
                           editProductText="Edit Product"
                           itemPrice="$790.00"/>

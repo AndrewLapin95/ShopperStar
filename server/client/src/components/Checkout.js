@@ -1,8 +1,11 @@
 import React from "react"; 
 
-import Check from "./images/check.png"; 
+class Checkout extends React.Component {
+    constructor(props) {
+        super(props);
+        this.checkImageUrl = "https://shopperstar.s3.amazonaws.com/check.jpg";
+    }
 
-class Checkout extends React.Component { 
     render() { 
         return (
             <div className="super_container">
@@ -16,7 +19,7 @@ class Checkout extends React.Component {
                                     <div class="checkout_extra">
                                         <div>
                                             <input type="checkbox" id="saved_address" name="regular_checkbox" class="regular_checkbox" />
-                                            <label for="checkbox_account"><img src={Check} alt="" /></label>
+                                            <label for="checkbox_account"><img src={this.checkImageUrl} alt="" /></label>
                                             <span class="checkbox_title">Use saved address (address goes here)</span>
                                         </div>
                                     </div>
@@ -87,7 +90,7 @@ class Checkout extends React.Component {
                                             <div class="checkout_extra">
                                                 <div>
                                                     <input type="checkbox" id="checkbox_account" name="regular_checkbox" class="regular_checkbox" />
-                                                    <label for="checkbox_account"><img src={Check} alt="" /></label>
+                                                    <label for="checkbox_account"><img src={this.checkImageUrl} alt="" /></label>
                                                     <span class="checkbox_title">Save address</span>
                                                 </div>
                                             </div>

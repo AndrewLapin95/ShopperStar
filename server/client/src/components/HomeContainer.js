@@ -1,12 +1,16 @@
 import React from "react";
-import backgroundImage from "./images/home_slider_1.jpg"; 
 
 class HomeContainer extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className="home">
                 <div className="home_container">
-                    <div className="home_background" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                    <div className="home_background" style={{ backgroundImage: `url("https://shopperstar.s3.amazonaws.com/home_slider_1.jpg")` }}></div>
                     <div className="home_content_container">
                         <div className="container">
                             <div className="row">
