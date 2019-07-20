@@ -5,8 +5,8 @@ phases:
     runtime-versions:
       nodejs: 10
     commands:
-      - npm install --prefix server
-      - npm install --prefix server/client
+      - sudo npm install --prefix server
+      - sudo npm install --prefix server/client
   build:
     commands:
       - echo Build started on `date`
