@@ -20,6 +20,7 @@ phases:
 artifacts:
   files:
     - appspec.yml
+    - scripts/*
     - server/config/*
     - server/index.js
     - server/models/*
