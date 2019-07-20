@@ -1,6 +1,5 @@
 import 'jquery';
 import reduxThunk from 'redux-thunk';
-import Popper from 'popper.js';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
