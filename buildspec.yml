@@ -24,6 +24,7 @@ artifacts:
     - server/config/*
     - server/index.js
     - server/models/*
+    - server/node_modules/*
     - server/package.json
     - server/routes/*
     - server/services/*
