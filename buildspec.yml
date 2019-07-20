@@ -6,6 +6,8 @@ phases:
     runtime-versions:
       nodejs: 10
     commands:
+      - echo $FONTAWESOME_TOKEN
+      - npm config set @fortawesome:registry https://npm.fontawesome.com/$FONTAWESOME_TOKEN
       - npm install --prefix server
       - npm install --prefix server/client
   build:
