@@ -1,5 +1,4 @@
 #!/bin/bash
 
-PROJECT_DIR="/var/www/shopperstar-project.com"
-
-rm -rf "$PROJECT_DIR/*"
+rm -rf "/var/www/shopperstar-project.com/*"
+kill $(ps aux | grep 'node' | ps aux | grep 'index.js' | awk '{print $2}') || true
