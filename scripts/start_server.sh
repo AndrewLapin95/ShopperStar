@@ -2,10 +2,7 @@
 source ~/.env
 
 PROJECT_DIR="/var/www/shopperstar-project.com"
-
-rm -rf "$PROJECT_DIR/*"
 cd $PROJECT_DIR
-kill $(ps aux | grep 'node' | ps aux | grep 'index.js' | awk '{print $2}')
 
 docker-compose --file docker-compose.yml down
 docker-compose --file docker-compose.yml up -d
