@@ -1,6 +1,8 @@
 #!/bin/bash
 source ~/.env
 
+kill $(ps aux | grep 'node' | ps aux | grep 'index.js' | awk '{print $2}') || true
+
 PROJECT_DIR="/var/www/shopperstar-project.com"
 cd $PROJECT_DIR
 
