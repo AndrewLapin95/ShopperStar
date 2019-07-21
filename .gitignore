@@ -4,3 +4,4 @@ package-lock.json
 dev.js
 .DS_Store
 server/.DS_Store
+/.metadata/
