@@ -17,6 +17,8 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - cd server/node_modules
+      - ls
 artifacts:
   files:
     - appspec.yml
