@@ -9,6 +9,6 @@ docker-compose --file docker-compose.yml up -d
 
 echo "Starting the application!"
 cd "$PROJECT_DIR/server"
-nohup node index.js > /dev/null &
+nohup node index.js &
 
 exit 0
