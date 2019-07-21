@@ -19,14 +19,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - appspec.yml
-    - docker-compose.yml
-    - scripts/*
-    - server/config/*
-    - server/index.js
-    - server/models/*
-    - server/node_modules/*
-    - server/package.json
-    - server/routes/*
-    - server/services/*
-    - server/client/build/*
+    - '**/*'
