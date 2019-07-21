@@ -3,6 +3,7 @@ source ~/.env
 
 PROJECT_DIR="/var/www/shopperstar-project.com"
 
+cd $PROJECT_DIR
 docker-compose --file docker-compose.yml up
 
 echo "Starting the application!"
