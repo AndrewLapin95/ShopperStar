@@ -12,3 +12,4 @@ sleep 90
 echo "Starting the application!"
 cd "$PROJECT_DIR/server"
 node index.js > /etc/shopperstar-project/stdout.txt 2> /etc/shopperstar-project/stderr.txt &
+
