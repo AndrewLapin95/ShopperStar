@@ -5,6 +5,12 @@ public class Contact {
 	private String userId;
 	private String email;
 	
+	public Contact(String userId, String email) {
+		super();
+		this.userId = userId;
+		this.email = email;
+	}
+
 	public String getUserId() {
 		return userId;
 	}

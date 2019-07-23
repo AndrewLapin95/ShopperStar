@@ -8,6 +8,15 @@ public class NewsletterSubscription {
 	String subject;
 	String message;
 	
+	public NewsletterSubscription(String userId, String firstName, String lastName, String subject, String message) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.subject = subject;
+		this.message = message;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
