@@ -5,26 +5,26 @@ import javax.persistence.Id;
 public class Contact {
 	
 	@Id
-	private String userId;
+	private String contactId;
 	
 	private String email;
 	
 	public Contact(String userId, String email) {
 		super();
-		this.userId = userId;
+		this.contactId = userId;
 		this.email = email;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getContactId() {
+		return contactId;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setContactId(String userId) {
+		this.contactId = userId;
 	}
 	
 	public void setEmail(String email) {
@@ -33,7 +33,7 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [userId=" + userId + ", email=" + email + "]";
+		return "Contact [userId=" + contactId + ", email=" + email + "]";
 	}
 	
 }
