@@ -1,8 +1,14 @@
 package com.shopperstar.project.communication.entity;
 
+import org.hibernate.annotations.Entity;
+import org.springframework.data.annotation.Id;
+
+
 public class NewsletterSubscription {
 	
+	@Id
 	String userId;
+	
 	String firstName;
 	String lastName;
 	String subject;

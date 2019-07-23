@@ -1,8 +1,12 @@
 package com.shopperstar.project.communication.entity;
 
+import javax.persistence.Id;
+
 public class Contact {
 	
+	@Id
 	private String userId;
+	
 	private String email;
 	
 	public Contact(String userId, String email) {
