@@ -1,5 +1,5 @@
 package com.shopperstar.project.communication.controller;
 
-public class ContactController {
+public class NewsletterSubscriptionDTO {
 
 }

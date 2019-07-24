@@ -1,70 +1,39 @@
 package com.shopperstar.project.communication.entity;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 
 public class NewsletterSubscription {
 	
 	@Id
-	String subscriptionId;
+	private String newsletterSubscriptionId;
 	
-	String firstName;
-	String lastName;
-	String subject;
-	String message;
+	private String email;
 	
-	public NewsletterSubscription(String userId, String firstName, String lastName, String subject, String message) {
-		super();
-		this.subscriptionId = subscriptionId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.subject = subject;
-		this.message = message;
+	public NewsletterSubscription(String newsletterSubscriptionId, String email) {
+		this.newsletterSubscriptionId = newsletterSubscriptionId;
+		this.email = email;
 	}
 
-	public String getSubscriptionId() {
-		return subscriptionId;
+	public String getNewsletterSubscriptionId() {
+		return newsletterSubscriptionId;
 	}
 	
-	public void setSubscriptionId(String userId) {
-		this.subscriptionId = userId;
+	public void setNewsletterSubscriptionId(String newsletterSubscriptionId) {
+		this.newsletterSubscriptionId = newsletterSubscriptionId;
+	}
+
+	public String getNewsletterSubscriptionEmail() {
+		return email;
 	}
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getSubject() {
-		return subject;
-	}
-	
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	
-	public void setMessage(String message) {
-		this.message = message;
+	public void setNewsletterSubscriptionEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
 	public String toString() {
-		return "NewsletterSubscription [userId=" + subscriptionId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", subject=" + subject + ", message=" + message + "]";
+		return "Contact [newsletterSubscriptionId=" + newsletterSubscriptionId + ", email=" + email + "]";
 	}
+	
 }
