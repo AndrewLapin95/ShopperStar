@@ -7,11 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopperstar.project.communication.controller.NewsletterSubscriptionDTO;
+import com.shopperstar.project.communication.controller.NewsletterSubscriptionService;
 import com.shopperstar.project.communication.entity.NewsletterSubscription;
 
 @Service
-public class MongoDBNewsletterSubscriptionService implements NewsletterSubscriptionInterface {
+public class MongoDBNewsletterSubscriptionService implements NewsletterSubscriptionService {
 
 	private final NewsletterSubscriptionRepository repository;
 	
@@ -23,11 +23,13 @@ public class MongoDBNewsletterSubscriptionService implements NewsletterSubscript
 	@Override
 	public NewsletterSubscriptionDTO create(NewsletterSubscriptionDTO newsletterSubscription) {
 		NewsletterSubscription newContact = new NewsletterSubscription(newsletterSubscription.getEmail());
+		newContact = repository.save(newContact);
+		return convertToDTO(newContact);
 	}
 
 	@Override
 	public NewsletterSubscriptionDTO delete(String id) {
-		NewsletterSubscription deleted = findContactById(id);
+		NewsletterSubscription deleted = findNewsletterSubscriptionById(id);
 		repository.delete(deleted);
 		return convertToDTO(deleted);
 	}
@@ -40,22 +42,22 @@ public class MongoDBNewsletterSubscriptionService implements NewsletterSubscript
 
 	@Override
 	public NewsletterSubscriptionDTO findById(String id) {
-		NewsletterSubscription newsletterSubscription = findContactById(id);
+		NewsletterSubscription newsletterSubscription = findNewsletterSubscriptionById(id);
 		return convertToDTO(newsletterSubscription);
 	}
 
 	@Override
 	public NewsletterSubscriptionDTO update(NewsletterSubscriptionDTO newsletterSubscription) {
-		NewsletterSubscription newsletterSubscriptionToUpdate = findContactById(newsletterSubscription.getId());
-		newsletterSubscriptionToUpdate.update(newsletterSubscription.getEmail());
+		NewsletterSubscription newsletterSubscriptionToUpdate = findNewsletterSubscriptionById(newsletterSubscription.getId());
+		newsletterSubscriptionToUpdate.setNewsletterSubscriptionEmail(newsletterSubscription.getEmail());
 		newsletterSubscriptionToUpdate = repository.save(newsletterSubscriptionToUpdate);
 		return convertToDTO(newsletterSubscriptionToUpdate);
 		
 	}
 	
-	private NewsletterSubscription findContactById(String id) {
+	private NewsletterSubscription findNewsletterSubscriptionById(String id) {
 		Optional<NewsletterSubscription> foundContact = repository.findOne(id);
-		return foundContact.orElseThrow(() -> new NewsletterSubscriptionNotFoundException());
+		return foundContact.get();
 	}
 	
 	private List<NewsletterSubscriptionDTO> convertToDTOs(List<NewsletterSubscription> contacts) {

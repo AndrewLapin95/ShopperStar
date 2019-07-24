@@ -10,8 +10,7 @@ public class NewsletterSubscription {
 	
 	private String email;
 	
-	public NewsletterSubscription(String newsletterSubscriptionId, String email) {
-		this.newsletterSubscriptionId = newsletterSubscriptionId;
+	public NewsletterSubscription(String email) {
 		this.email = email;
 	}
 
