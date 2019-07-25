@@ -32,14 +32,14 @@ public class NewsletterSubscriptionController {
 	}
 	
 	@GetMapping("/api/get-newsletter-subscription/{id}")
-	public Optional<NewsletterSubscription> getNewsletterSubscription(@PathVariable int id) {
+	public Optional<NewsletterSubscription> getNewsletterSubscription(@PathVariable String id) {
 		return repository.findById(id);
 	}
 	
 	@DeleteMapping("/api/unsubscribe/{id}")
-	public String deleteNewsletterSubscription(@PathVariable int id) {
+	public String deleteNewsletterSubscription(@PathVariable String id) {
 		repository.deleteById(id);
-		return Integer.toString(id);
+		return id;
 	}
 	
 }
