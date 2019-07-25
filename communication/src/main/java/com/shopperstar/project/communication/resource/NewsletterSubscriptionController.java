@@ -3,6 +3,8 @@ package com.shopperstar.project.communication.resource;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +22,33 @@ public class NewsletterSubscriptionController {
 	@Autowired
 	private NewsletterSubscriptionRepository repository;
 	
+	private static final Logger logger = LoggerFactory.getLogger(NewsletterSubscriptionController.class);
+	
 	@PostMapping("/api/subscribe")
 	public String saveNewsletterSubscription(@RequestBody NewsletterSubscription subscription) {
-		repository.save(subscription);
+		
+		List<NewsletterSubscription> subscriptions = repository.findAll();
+		
+		for (NewsletterSubscription sub : subscriptions) {
+			if (sub.getEmail().equals(subscription.getEmail())) {
+				logger.info("Subscription for the email " + sub.getEmail() + " already exists!");
+				return subscription.getEmail();
+			}
+		}
+		
+		try {
+			
+			logger.info("Adding new subscription: " + subscription.getEmail());
+			repository.save(subscription);
+			logger.info("Successfully added new subscription: " + subscription.getEmail());
+			
+		} catch (Exception ex) {
+			
+			logger.error("Failed to save subscription: " + subscription.getEmail());
+			logger.error(ex.getMessage());
+			
+		}
+		
 		return subscription.getEmail();
 	}
 	
@@ -38,7 +64,19 @@ public class NewsletterSubscriptionController {
 	
 	@DeleteMapping("/api/unsubscribe/{id}")
 	public String deleteNewsletterSubscription(@PathVariable String id) {
-		repository.deleteById(id);
+		
+		try {
+			
+			logger.info("Attempting to delete subscription: " + id);
+			repository.deleteById(id);
+			logger.info("Successfully deleted subscription: " + id);
+			
+			
+		} catch (Exception ex) {
+			logger.error("Failed to delete subscription: " + id);
+			logger.error(ex.getMessage());
+		}
+		
 		return id;
 	}
 	
