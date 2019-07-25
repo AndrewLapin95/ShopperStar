@@ -1,4 +1,4 @@
-communication/src/main/resources/application.properties
+**/src/main/resources/*
 node_modules
 yarn.lock
 package-lock.json
