@@ -35,3 +35,4 @@ server/.DS_Store
 
 ### VS Code ###
 **/.vscode/
+communication/src/main/resources/application.properties
