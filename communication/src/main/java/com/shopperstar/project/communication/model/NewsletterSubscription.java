@@ -1,19 +1,23 @@
 package com.shopperstar.project.communication.model;
 
+import javax.annotation.Generated;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "NewsletterSubscriptions")
 public class NewsletterSubscription {
 	
-	private int id;
+	@Id
+	private String id;
 	
 	private String email;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

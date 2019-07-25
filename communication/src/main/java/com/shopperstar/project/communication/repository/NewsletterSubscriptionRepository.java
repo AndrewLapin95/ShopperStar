@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.shopperstar.project.communication.model.NewsletterSubscription;
 
-public interface NewsletterSubscriptionRepository extends MongoRepository<NewsletterSubscription, Integer> {
+public interface NewsletterSubscriptionRepository extends MongoRepository<NewsletterSubscription, String> {
+
 	
 }
