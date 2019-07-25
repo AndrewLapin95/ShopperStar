@@ -1,3 +1,4 @@
+communication/src/main/resources/application.properties
 node_modules
 yarn.lock
 package-lock.json
@@ -35,4 +36,3 @@ server/.DS_Store
 
 ### VS Code ###
 **/.vscode/
-communication/src/main/resources/application.properties
