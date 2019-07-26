@@ -3,6 +3,8 @@ package com.shopperstar.project.communication.resource;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class NewsletterSubscriptionController {
 	private static final Logger logger = LoggerFactory.getLogger(NewsletterSubscriptionController.class);
 	
 	@PostMapping("/api/subscribe")
-	public String saveNewsletterSubscription(@RequestBody NewsletterSubscription subscription) {
+	public String saveNewsletterSubscription(@Valid @RequestBody NewsletterSubscription subscription) {
 		
 		List<NewsletterSubscription> subscriptions = repository.findAll();
 		
@@ -69,7 +71,6 @@ public class NewsletterSubscriptionController {
 			
 			logger.info("Attempting to delete subscription: " + id);
 			repository.deleteById(id);
-			logger.info("Successfully deleted subscription: " + id);
 			
 			
 		} catch (Exception ex) {
