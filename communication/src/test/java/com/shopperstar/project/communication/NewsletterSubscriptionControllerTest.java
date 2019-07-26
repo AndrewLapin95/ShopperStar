@@ -81,12 +81,21 @@ public class NewsletterSubscriptionControllerTest {
 	}
 	
 	@Test
-	public void saveNewsletterSubscription() throws Exception {
+	public void saveNewsletterSubscriptionBasic() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/subscribe")
 															  .contentType(MediaType.APPLICATION_JSON)
 															  .content("{\"email\":\"test1@gmail.com\"}");
 		
 		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void saveNewsletterSubscriptionBadRequest() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/subscribe")
+															  .contentType(MediaType.APPLICATION_JSON)
+															  .content("{\"email\":\"test1\"}");
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isBadRequest());
 	}
 	
 	@Test
