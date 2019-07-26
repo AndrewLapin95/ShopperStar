@@ -77,10 +77,20 @@ public class NewsletterSubscriptionControllerTest {
 									   .andExpect(jsonPath("$.email", is(testEmail)));
 		
 		verify(service, times(1)).getNewsletterSubscription(testId);
+		verifyNoMoreInteractions(service);
 	}
 	
 	@Test
 	public void saveNewsletterSubscription() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/subscribe")
+															  .contentType(MediaType.APPLICATION_JSON)
+															  .content("{\"email\":\"test1@gmail.com\"}");
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void deleteNewsletterSubscription() throws Exception {
 		
 		String testId = "5d38fd2df7ae3c5b4b74faaa";
 		String testEmail = "test1@gmail.com";
@@ -89,12 +99,9 @@ public class NewsletterSubscriptionControllerTest {
 		
 		Mockito.when(service.saveNewsletterSubscription(testNewsletterSubscription)).thenReturn(testEmail);
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/subscribe")
-															  .param("email", testEmail)
-															  .accept(MediaType.APPLICATION_JSON);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/unsubscribe/" + testId)
+															  .contentType(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(requestBuilder).andExpect(status().isOk());
-		verify(service, times(1)).saveNewsletterSubscription(testNewsletterSubscription);
-		
 	}
 }
