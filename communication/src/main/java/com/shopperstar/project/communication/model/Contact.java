@@ -1,7 +1,5 @@
 package com.shopperstar.project.communication.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,15 +8,37 @@ public class Contact {
 	
 	@Id
 	String id;
-	
-	@Autowired
 	String firstName;
-	
-	@Autowired
 	String lastName;
-	
 	String subject;
 	String message;
+	
+	public Contact() {}
+	
+	public Contact(String id, String firstName, String lastName, String subject, String message) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.message = message;
+		
+		if (subject != null) {
+			this.subject = subject;
+		} else {
+			this.subject = "";
+		}
+	}
+	
+	public Contact(String firstName, String lastName, String subject, String message) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.message = message;
+		
+		if (subject != null) {
+			this.subject = subject;
+		} else {
+			this.subject = "";
+		}
+	}
 	
 	public String getId() {
 		return id;
