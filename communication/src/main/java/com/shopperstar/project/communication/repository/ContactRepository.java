@@ -10,7 +10,7 @@ import com.shopperstar.project.communication.model.NewsletterSubscription;
 
 public interface ContactRepository extends MongoRepository<Contact, String>{
 	
-	Contact save(NewsletterSubscription subscription);
+	Contact save(Contact contact);
 	
 	List<Contact> findAll();
 	
