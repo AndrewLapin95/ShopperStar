@@ -43,6 +43,32 @@ public class Cart {
 	public void setProducts(List<ProductInCart> products) {
 		this.products = products;
 	}
+	
+	public ProductInCart getProductById(String productId) {
+		
+		for (ProductInCart product : this.products) {
+			
+			if (product.getProductId() == productId) {
+				return product;
+			}
+			
+		}
+		
+		return null;
+	}
+	
+	public boolean removeProductById(String productId) {
+		
+		for (ProductInCart product : this.products) {
+			
+			if (product.getProductId() == productId) {
+				return this.products.remove(product);
+			}
+			
+		}
+		
+		return false;
+	}
 
 	@Override
 	public String toString() {

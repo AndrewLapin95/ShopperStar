@@ -31,6 +31,4 @@ public class ProductInCart {
 		return "ProductInCart [productId=" + productId + ", count=" + count + "]";
 	}
 	
-	
-	
 }
