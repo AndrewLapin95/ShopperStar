@@ -3,6 +3,8 @@ package com.shopperstar.project.cart.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +13,7 @@ public class Cart {
 	
 	@Id
 	String userId;
+	
 	Integer productCount;
 	List<ProductInCart> products;
 	
@@ -19,7 +22,7 @@ public class Cart {
 		this.productCount = 0;
 		this.products = new ArrayList<ProductInCart>();
 	}
-	
+
 	public String getUserId() {
 		return userId;
 	}
@@ -47,8 +50,7 @@ public class Cart {
 	public ProductInCart getProductById(String productId) {
 		
 		for (ProductInCart product : this.products) {
-			
-			if (product.getProductId() == productId) {
+			if (product.getProductId().equals(productId)) {
 				return product;
 			}
 			
@@ -57,17 +59,27 @@ public class Cart {
 		return null;
 	}
 	
-	public boolean removeProductById(String productId) {
+	public int removeProductById(String productId) {
 		
 		for (ProductInCart product : this.products) {
 			
-			if (product.getProductId() == productId) {
-				return this.products.remove(product);
+			if (product.getProductId().equals(productId)) {
+				int productCount = product.getCount();
+				this.products.remove(product);
+				return productCount;
 			}
 			
 		}
 		
-		return false;
+		return 0;
+	}
+	
+	public void removeAllItems() {
+		
+		while(this.products.size() > 0) {
+			this.products.remove(0);
+		}
+		
 	}
 
 	@Override
