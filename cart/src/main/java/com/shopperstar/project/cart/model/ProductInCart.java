@@ -1,7 +1,11 @@
 package com.shopperstar.project.cart.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ProductInCart {
 	
+	@NotNull
 	String productId;
 	Integer count;
 	

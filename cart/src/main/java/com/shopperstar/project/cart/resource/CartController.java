@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopperstar.project.cart.model.Cart;
 import com.shopperstar.project.cart.model.ProductInCart;
+import com.shopperstar.project.cart.model.ProductToDelete;
 import com.shopperstar.project.cart.repository.CartRepository;
 
 @RestController
@@ -26,8 +27,8 @@ public class CartController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CartRepository.class);
 	
-	@PostMapping("/api/create-cart")
-	public String createCart(@Valid @RequestBody String userId) {
+	@PostMapping("/api/create-cart/{userId}")
+	public String createCart(@PathVariable String userId) {
 		
 		if (getCart(userId).isPresent()) {
 			
@@ -53,15 +54,89 @@ public class CartController {
 		}
 	}
 	
-	@GetMapping("/api/get-cart")
-	public Optional<Cart> getCart(@Valid @RequestBody String userId) {
+	@GetMapping("/api/get-cart/{userId}")
+	public Optional<Cart> getCart(@PathVariable String userId) {
 		return repository.findById(userId);
 	}
 	
-	@PostMapping("/api/add-item/{productId}/{count}")
-	public ProductInCart addItemToCart(@Valid @RequestBody String userId, 
-									   @PathVariable("productId") String productId, 
-									   @PathVariable("count") Integer count) {
+	@PostMapping("/api/add-item/{userId}")
+	public ProductInCart addItemToCart(@PathVariable("userId") String userId, @Valid @RequestBody ProductInCart updatedProduct) {
+		
+		Cart cart = findCartByUserId(userId);
+		
+		ProductInCart product = cart.getProductById(updatedProduct.getProductId());
+		cart.setProductCount(cart.getProductCount() + updatedProduct.getCount());
+		
+		if (product != null) {
+			
+			logger.info("Adding additional product to cart...");
+			product.setCount(product.getCount() + updatedProduct.getCount());
+			
+		} else {
+			
+			logger.info("Creating new product in the cart...");
+			product = new ProductInCart(updatedProduct.getProductId(), updatedProduct.getCount());
+			cart.getProducts().add(product);
+			
+		}
+		
+		try {
+			
+			logger.info("Attempting to save: " + updatedProduct.toString());
+			repository.save(cart);
+			logger.info("Successfully saved: " + updatedProduct.getProductId());
+			
+		} catch (Exception e) {
+			
+			logger.error("Failed to save: " + updatedProduct.toString());
+			logger.error(e.toString());
+			
+		}
+		
+		return product;
+	}
+
+	@DeleteMapping("/api/delete-item/{userId}")
+	public boolean deleteItemInCart(@PathVariable String userId, @Valid @RequestBody ProductToDelete productToDelete) {
+		
+		Cart cart = findCartByUserId(userId);
+		
+		if (cart == null) {
+			return false;
+		}
+		
+		int removedProductCount = cart.removeProductById(productToDelete.getProductId());
+		
+		if (removedProductCount == 0) {
+			logger.warn("Item: " + productToDelete.getProductId() + " was not found in the cart...");
+			return false;
+		}
+		
+		cart.setProductCount(cart.getProductCount() - removedProductCount);
+		
+		repository.save(cart);
+		
+		return true;
+	}
+	
+	@DeleteMapping("/api/delete-items/{userId}")
+	public boolean deleteAllItemsInCart(@PathVariable String userId) {
+		
+		Cart cart = findCartByUserId(userId);
+		
+		if (cart == null) {
+			return false;
+		}
+		
+		cart.removeAllItems();
+		cart.setProductCount(0);
+		repository.save(cart);
+		
+		return true;
+		
+	}
+	
+	public Cart findCartByUserId(String userId) {
 		
 		Optional<Cart> optionalCart = repository.findById(userId);
 		
@@ -72,64 +147,8 @@ public class CartController {
 			
 		}
 		
-		Cart cart = optionalCart.get();
-		logger.info("Located cart for user: " + cart.getUserId());
-		ProductInCart product = cart.getProductById(productId);
+		logger.info("Located cart for user: " + optionalCart.get().getUserId());
 		
-		if (product != null) {
-			
-			logger.info("Adding additional product to cart...");
-			
-			product = cart.getProductById(productId);
-			product.setCount(product.getCount() + 1);
-			
-		} else {
-			
-			logger.info("Creating new product in the cart...");
-			product = new ProductInCart(productId, count);
-			
-		}
-		
-		cart.getProducts().add(product);
-		cart.setProductCount(cart.getProductCount() + count);
-		
-		try {
-			
-			logger.info("Attempting to save: " + product.toString());
-			repository.save(cart);
-			logger.info("Successfully saved: " + product.getProductId());
-			
-		} catch (Exception e) {
-			
-			logger.error("Failed to save: " + product.toString());
-			logger.error(e.toString());
-			
-		}
-		
-		return product;
-	}
-
-	@DeleteMapping("/api/delete-item")
-	public boolean deleteItemInCart(@Valid @RequestBody String userId, @Valid @RequestBody String productId) {
-		
-		Optional<Cart> optionalCart = getCart(userId);
-		
-		if (optionalCart.get() == null) {
-			
-			logger.error("Cart for user: " + userId + " does not exist.");
-			return false;
-			
-		}
-		
-		Cart cart = optionalCart.get();
-	
-		if (!cart.removeProductById(productId)) {
-			logger.error("Failed to remove item: " + productId);
-			return false;
-		}
-		
-		repository.save(cart);
-		
-		return true;
+		return optionalCart.get();
 	}
 }
