@@ -3,7 +3,7 @@ package com.shopperstar.project.cart.model;
 public class ProductToDelete {
 	
 	String productId;
-
+	
 	public String getProductId() {
 		return productId;
 	}
