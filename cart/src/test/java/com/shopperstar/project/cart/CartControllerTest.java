@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.shopperstar.project.cart.model.Cart;
+import com.shopperstar.project.cart.model.ProductInCart;
 import com.shopperstar.project.cart.resource.CartController;
 
 @WebMvcTest(value = CartController.class)
@@ -31,27 +32,6 @@ public class CartControllerTest {
 	
 	@MockBean
 	private CartController service;
-	
-	@Test
-	public void retrieveCartTest() throws Exception {
-		
-		String testUserId = "5d018bc7017a80e18ff1737b";
-		
-		Cart testCart = new Cart(testUserId);
-		
-		Mockito.when(service.getCart(testCart.getUserId())).thenReturn(Optional.of(testCart));
-		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/get-cart/" + testUserId)
-															  .accept(MediaType.APPLICATION_JSON);
-		
-		mockMvc.perform(requestBuilder).andExpect(status().isOk())
-									   .andExpect(jsonPath("$.userId", is(testUserId)))
-									   .andExpect(jsonPath("$.productCount", is(0)))
-									   .andExpect(jsonPath("$.products", hasSize(0)));
-		
-		verify(service, times(1)).getCart(testUserId);
-		verifyNoMoreInteractions(service);
-	}
 	
 	@Test
 	public void saveNewCartTest() throws Exception {
@@ -77,17 +57,74 @@ public class CartControllerTest {
 	}
 	
 	@Test
-	public void addItemToCartTest() throws Exception {
+	public void retrieveCartTest() throws Exception {
 		
+		String testUserId = "5d018bc7017a80e18ff1737b";
+		
+		Cart testCart = new Cart(testUserId);
+		
+		Mockito.when(service.getCart(testCart.getUserId())).thenReturn(Optional.of(testCart));
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/get-cart/" + testUserId)
+															  .accept(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk())
+									   .andExpect(jsonPath("$.userId", is(testUserId)))
+									   .andExpect(jsonPath("$.productCount", is(0)))
+									   .andExpect(jsonPath("$.products", hasSize(0)));
+		
+		verify(service, times(1)).getCart(testUserId);
+		verifyNoMoreInteractions(service);
 	}
 	
-	//@Test
-	//public void deleteItemFromCartTest() throws Exception {
+	@Test
+	public void addItemToCartTest() throws Exception {
+
+		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
 		
-	//}
+		ProductInCart testProduct = new ProductInCart("1", 1);
+		
+		Mockito.when(service.createCart(testCart.getUserId())).thenReturn(testCart.getUserId());
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/add-item/" + testCart.getUserId())
+											   .content("{\"productId\":\"" + testProduct.getProductId() + 
+													     "\",\"count\":" + testProduct.getProductId() + "}")
+											   .contentType(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+	}
 	
-	//@Test
-	//public void deleteAllItemsFromCartTest() throws Exception {
+	@Test
+	public void deleteItemFromCartTest() throws Exception {
 		
-	//}
+		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
+		
+		ProductInCart testProduct = new ProductInCart("1", 1);
+		
+		Mockito.when(service.addItemToCart(testCart.getUserId(), testProduct)).thenReturn(testProduct);
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/delete-item/" + testCart.getUserId())
+				   											  .content("{\"productId\":\"" + testProduct.getProductId() + 
+				   													  	"\",\"count\":" + testProduct.getProductId() + "}")
+											   .contentType(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());		
+	
+	}
+	
+	@Test
+	public void deleteAllItemsFromCartTest() throws Exception {
+		
+		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
+		
+		ProductInCart testProduct = new ProductInCart("1", 1);
+		
+		Mockito.when(service.addItemToCart(testCart.getUserId(), testProduct)).thenReturn(testProduct);
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/delete-items/" + testCart.getUserId())
+											   				  .contentType(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+		
+	}
 }
