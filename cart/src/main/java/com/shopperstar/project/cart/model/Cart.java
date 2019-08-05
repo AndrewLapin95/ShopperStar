@@ -8,8 +8,6 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.shopperstar.project.cart.resource.DeliveryMethod;
-
 @Document(collection = "Cart")
 public class Cart {
 	
@@ -65,10 +63,10 @@ public class Cart {
 		return deliveryMethod;
 	}
 
-	public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
+	public void setDeliveryMethod(String deliveryMethod) {
 		
 		this.setTotalPrice(this.getTotalPrice() - DeliveryMethod.getDeliveryPrice(this.deliveryMethod));
-		this.deliveryMethod = deliveryMethod;
+		this.deliveryMethod = DeliveryMethod.getDeliveryMethod(deliveryMethod);
 		this.setTotalPrice(this.getTotalPrice() + DeliveryMethod.getDeliveryPrice(this.deliveryMethod));
 		
 	}

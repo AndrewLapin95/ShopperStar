@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.shopperstar.project.cart.model.Cart;
+import com.shopperstar.project.cart.model.DeliveryRequestBody;
 import com.shopperstar.project.cart.model.ProductInCart;
 import com.shopperstar.project.cart.model.ProductToDelete;
 import com.shopperstar.project.cart.repository.CartRepository;
@@ -70,13 +71,11 @@ public class CartController {
 	}
 	
 	@PostMapping("/api/update-delivery-method/{userId}")
-	public Cart updateDeliveryMethod(@PathVariable("userId") String userId, @Valid @RequestBody DeliveryMethod method) {
+	public Cart updateDeliveryMethod(@PathVariable("userId") String userId, @Valid @RequestBody DeliveryRequestBody method) {
 		
 		Cart cart = findCartByUserId(userId);
 		
-		Double oldDeliveryMethodPrice = DeliveryMethod.getDeliveryPrice(cart.getDeliveryMethod());
-		
-		cart.setDeliveryMethod(method);
+		cart.setDeliveryMethod(method.getDeliveryMethod());
 		
 		try {
 			
