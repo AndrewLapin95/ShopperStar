@@ -4,6 +4,12 @@ public class ProductToDelete {
 	
 	String productId;
 	
+	public ProductToDelete() {}
+	
+	public ProductToDelete(String productId) {
+		this.productId = productId;
+	}
+	
 	public String getProductId() {
 		return productId;
 	}
