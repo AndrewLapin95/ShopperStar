@@ -4,6 +4,10 @@ public enum DeliveryMethod {
 	
 	NEXT_DAY_DELIVERY, STANDARD_DELIVERY, PICKUP;
 	
+	private final static Double nextDayDeliveryPrice = 25.00;
+	private final static Double standardDeliveryPrice = 5.00;
+	private final static Double pickupPrice = 0.00;
+	
 	public static DeliveryMethod getDeliveryMethod(String method) {
 		
 		if (method.equals("NEXT_DAY_DELIVERY")) {
@@ -24,11 +28,11 @@ public enum DeliveryMethod {
 	public static Double getDeliveryPrice(DeliveryMethod method) {
 		
 		if (method == DeliveryMethod.NEXT_DAY_DELIVERY) {
-			return 25.00;
+			return nextDayDeliveryPrice;
 		} else if (method == DeliveryMethod.STANDARD_DELIVERY) {
-			return 4.99;
+			return standardDeliveryPrice;
 		} else {
-			return 0.00;
+			return pickupPrice;
 		}
 	}
 }
