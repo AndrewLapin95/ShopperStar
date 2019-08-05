@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.shopperstar.project.cart.model.Cart;
+import com.shopperstar.project.cart.model.DeliveryRequestBody;
 import com.shopperstar.project.cart.model.ProductInCart;
 import com.shopperstar.project.cart.model.ProductToDelete;
 import com.shopperstar.project.cart.resource.CartController;
@@ -103,6 +104,27 @@ public class CartControllerTest {
 											   .contentType(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void updateDeliveryMethodTest() throws Exception {
+		
+		String testDeliveryMethod = "NEXT_DAY_DELIVERY";
+		
+		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
+		
+		ProductInCart testProduct = new ProductInCart(testProductId, testProductTitle, testProductCount, testProductPrice);
+		
+		ResponseEntity responseEntity = new ResponseEntity(HttpStatus.ACCEPTED);
+		
+		Mockito.when(service.updateDeliveryMethod(testCart.getUserId(), new DeliveryRequestBody(testDeliveryMethod))).thenReturn(testCart);
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/update-delivery-method/" + testCart.getUserId())
+															  .content("{\"deliveryMethod\": \"" + testDeliveryMethod + "\"}")
+															  .contentType(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());
+		
 	}
 	
 	@Test
