@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.shopperstar.project.cart.model.Cart;
 import com.shopperstar.project.cart.model.ProductInCart;
+import com.shopperstar.project.cart.model.ProductToDelete;
 import com.shopperstar.project.cart.resource.CartController;
 
 @WebMvcTest(value = CartController.class)
@@ -88,7 +89,7 @@ public class CartControllerTest {
 		
 		ResponseEntity responseEntity = new ResponseEntity(HttpStatus.ACCEPTED);
 		
-		Mockito.when(service.createCart(testCart.getUserId())).thenReturn(responseEntity);
+		Mockito.when(service.addItemToCart(testCart.getUserId(), testProduct)).thenReturn(testProduct);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/add-item/" + testCart.getUserId())
 											   .content("{\"productId\":\"" + testProduct.getProductId() + 
@@ -105,7 +106,7 @@ public class CartControllerTest {
 		
 		ProductInCart testProduct = new ProductInCart("1", 1);
 		
-		Mockito.when(service.addItemToCart(testCart.getUserId(), testProduct)).thenReturn(testProduct);
+		Mockito.when(service.deleteItemInCart(testCart.getUserId(), new ProductToDelete(testProduct.getProductId()))).thenReturn(true);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/delete-item/" + testCart.getUserId())
 				   											  .content("{\"productId\":\"" + testProduct.getProductId() + 
@@ -123,7 +124,7 @@ public class CartControllerTest {
 		
 		ProductInCart testProduct = new ProductInCart("1", 1);
 		
-		Mockito.when(service.addItemToCart(testCart.getUserId(), testProduct)).thenReturn(testProduct);
+		Mockito.when(service.deleteAllItemsInCart(testCart.getUserId())).thenReturn(true);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/delete-items/" + testCart.getUserId())
 											   				  .contentType(MediaType.APPLICATION_JSON);
