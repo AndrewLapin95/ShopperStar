@@ -16,7 +16,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -84,5 +86,37 @@ public class ProductControllerTest {
 		
 		verify(service, times(1)).getProduct(testProduct.getId());
 		verifyNoMoreInteractions(service);
+	}
+	
+	@Test
+	public void retrieveAllProductsTest() throws Exception {
+		
+		List<Product> listOfProducts = new ArrayList<Product>();
+		listOfProducts.add(testProduct);
+		
+		Mockito.when(service.getAllProducts()).thenReturn(listOfProducts);
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/api/get-products")
+				  											  .contentType(MediaType.APPLICATION_JSON)
+				  											  .accept(MediaType.APPLICATION_JSON);
+		
+		mockMvc.perform(requestBuilder).andExpect(status().isOk())
+									   .andExpect(jsonPath("$[0].id", is(testId)))
+									   .andExpect(jsonPath("$[0].title", is(testTitle)))
+									   .andExpect(jsonPath("$[0].description", is(testDescription)));
+		
+		verify(service, times(1)).getAllProducts();
+		verifyNoMoreInteractions(service);
+	}
+	
+	@Test
+	public void removeProduct() throws Exception {
+		
+		Mockito.when(service.removeProduct(testId)).thenReturn(new ResponseEntity<Product>(HttpStatus.OK));
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/remove-product/" + testId)
+ 				  											  .contentType(MediaType.APPLICATION_JSON);
+
+		mockMvc.perform(requestBuilder).andExpect(status().isOk());
 	}
 }
