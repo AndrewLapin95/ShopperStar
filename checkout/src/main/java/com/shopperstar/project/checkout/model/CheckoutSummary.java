@@ -4,66 +4,65 @@ import java.util.List;
 
 public class CheckoutSummary {
 	
+	String userId;
+	Integer productCount;
+	Double totalPrice;
+	String deliveryMethod;
 	List<OrderDetailsProduct> products;
-	Integer subtotal;
-	Integer shippingPrice;
-	Integer totalPrice;
-	PaymentMethod method;
 	
-	public CheckoutSummary(List<OrderDetailsProduct> products, Integer subtotal, 
-						   Integer shippingPrice, Integer totalPrice, PaymentMethod method) {
+	public CheckoutSummary(String userId, Integer productCount, Double totalPrice, 
+						   String deliveryMethod, List<OrderDetailsProduct> products) {
 		
-		this.products = products;
-		this.subtotal = subtotal;
-		this.shippingPrice = shippingPrice;
+		this.userId = userId;
+		this.productCount = productCount;
 		this.totalPrice = totalPrice;
-		this.method = method;
+		this.deliveryMethod = deliveryMethod;
+		this.products = products;
 	}
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public Integer getProductCount() {
+		return productCount;
+	}
+
+	public void setProductCount(Integer productCount) {
+		this.productCount = productCount;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public String getDeliveryMethod() {
+		return deliveryMethod;
+	}
+
+	public void setDeliveryMethod(String deliveryMethod) {
+		this.deliveryMethod = deliveryMethod;
+	}
+
 	public List<OrderDetailsProduct> getProducts() {
 		return products;
 	}
-	
+
 	public void setProducts(List<OrderDetailsProduct> products) {
 		this.products = products;
-	}
-	
-	public Integer getSubtotal() {
-		return subtotal;
-	}
-	
-	public void setSubtotal(Integer subtotal) {
-		this.subtotal = subtotal;
-	}
-	
-	public Integer getShippingPrice() {
-		return shippingPrice;
-	}
-	
-	public void setShippingPrice(Integer shippingPrice) {
-		this.shippingPrice = shippingPrice;
-	}
-	
-	public Integer getTotalPrice() {
-		return totalPrice;
-	}
-	
-	public void setTotalPrice(Integer totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-	
-	public PaymentMethod getMethod() {
-		return method;
-	}
-	
-	public void setMethod(PaymentMethod method) {
-		this.method = method;
 	}
 
 	@Override
 	public String toString() {
-		return "CheckoutSummary [products=" + products + ", subtotal=" + subtotal + ", shippingPrice=" + shippingPrice
-				+ ", totalPrice=" + totalPrice + ", method=" + method + "]";
+		return "CheckoutSummary [userId=" + userId + ", productCount=" + productCount + ", totalPrice=" + totalPrice
+				+ ", deliveryMethod=" + deliveryMethod + ", products=" + products + "]";
 	}
-	
 }
