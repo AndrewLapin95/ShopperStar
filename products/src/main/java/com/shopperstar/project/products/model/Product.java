@@ -6,17 +6,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-enum Category {
-	PHONES,
-	LAPTOPS,
-	CAMERAS,
-	HEADPHONES
-}
-
-enum Availability {
-	IN_STOCK,
-	UNAVAILABLE
-}
 
 @Document(collection = "Products")
 public class Product {
@@ -36,7 +25,7 @@ public class Product {
 	public Product(String id, String title, 
 				   Integer oldPrice, Integer newPrice, 
 				   Category category, Availability availability, 
-				   String description) {
+				   List<ImageUri> images, String description) {
 		
 		this.id = id;
 		this.title = title;
@@ -45,22 +34,22 @@ public class Product {
 		this.category = category;
 		this.availability = availability;
 		this.description = description;
-		this.images = new ArrayList<ImageUri>();
+		this.images = images;
 		
 	}
 	
 	public Product(String title, 
 			   Integer oldPrice, Integer newPrice, 
 			   Category category, Availability availability, 
-			   String description) {
+			   List<ImageUri> images, String description) {
 	
 	this.title = title;
 	this.oldPrice = oldPrice;
 	this.newPrice = newPrice;
 	this.category = category;
 	this.availability = availability;
+	this.images = images;
 	this.description = description;
-	this.images = new ArrayList<ImageUri>();
 	
 }
 	

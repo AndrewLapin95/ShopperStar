@@ -30,7 +30,7 @@ public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@PostMapping("/api/create-product")
-	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product newProduct) {
+	public String createProduct(@Valid @RequestBody Product newProduct) {
 		
 		Product savedProduct = null;
 		
@@ -45,11 +45,7 @@ public class ProductController {
 			logger.error(ex.toString());
 		}
 		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-												  .buildAndExpand(savedProduct.getId())
-												  .toUri();
-		
-		return ResponseEntity.created(location).build();
+		return savedProduct.getId();
 		
 	}
 	
@@ -89,8 +85,8 @@ public class ProductController {
 		}
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-				  .buildAndExpand(deletedProduct.getId())
-				  .toUri();
+				  								  .buildAndExpand(deletedProduct.getId())
+				  								  .toUri();
 
 		return ResponseEntity.created(location).build();
 	}
