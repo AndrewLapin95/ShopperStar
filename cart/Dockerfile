@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-ADD target/car-0.0.1-SNAPSHOT.jar /usr/app/cart-service.jar
+ADD target/cart-0.0.1-SNAPSHOT.jar /usr/app/cart-service.jar
 
 WORKDIR /usr/app
 
