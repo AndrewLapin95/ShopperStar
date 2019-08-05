@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.shopperstar.project.cart.resource.DeliveryMethod;
+
 @Document(collection = "Cart")
 public class Cart {
 	
@@ -15,12 +17,16 @@ public class Cart {
 	String userId;
 	
 	Integer productCount;
+	Double totalPrice;
+	DeliveryMethod deliveryMethod;
 	List<ProductInCart> products;
 	
 	public Cart(String userId) {
 		this.userId = userId;
 		this.productCount = 0;
 		this.products = new ArrayList<ProductInCart>();
+		this.deliveryMethod = DeliveryMethod.STANDARD_DELIVERY;
+		this.totalPrice = DeliveryMethod.getDeliveryPrice(this.deliveryMethod);
 	}
 
 	public String getUserId() {
@@ -45,6 +51,26 @@ public class Cart {
 	
 	public void setProducts(List<ProductInCart> products) {
 		this.products = products;
+	}
+	
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public DeliveryMethod getDeliveryMethod() {
+		return deliveryMethod;
+	}
+
+	public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
+		
+		this.setTotalPrice(this.getTotalPrice() - DeliveryMethod.getDeliveryPrice(this.deliveryMethod));
+		this.deliveryMethod = deliveryMethod;
+		this.setTotalPrice(this.getTotalPrice() + DeliveryMethod.getDeliveryPrice(this.deliveryMethod));
+		
 	}
 	
 	public ProductInCart getProductById(String productId) {
@@ -84,6 +110,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [userId=" + userId + ", productCount=" + productCount + ", products=" + products + "]";
+		return "Cart [userId=" + userId + ", productCount=" + productCount + ", totalPrice=" + totalPrice
+				+ ", deliveryMethod=" + deliveryMethod + ", products=" + products + "]";
 	}
 }
