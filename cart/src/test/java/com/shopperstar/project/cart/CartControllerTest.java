@@ -27,6 +27,7 @@ import com.shopperstar.project.cart.model.ProductInCart;
 import com.shopperstar.project.cart.model.ProductToDelete;
 import com.shopperstar.project.cart.resource.CartController;
 
+
 @WebMvcTest(value = CartController.class)
 public class CartControllerTest {
 
@@ -35,6 +36,11 @@ public class CartControllerTest {
 	
 	@MockBean
 	private CartController service;
+	
+	private String testProductId = "1";
+	private String testProductTitle = "Test Product Title";
+	private Integer testProductCount = 1;
+	private Integer testProductPrice = 100;
 	
 	@Test
 	public void saveNewCartTest() throws Exception {
@@ -85,7 +91,7 @@ public class CartControllerTest {
 
 		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
 		
-		ProductInCart testProduct = new ProductInCart("1", 1);
+		ProductInCart testProduct = new ProductInCart(testProductId, testProductTitle, testProductCount, testProductPrice);
 		
 		ResponseEntity responseEntity = new ResponseEntity(HttpStatus.ACCEPTED);
 		
@@ -93,7 +99,7 @@ public class CartControllerTest {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/add-item/" + testCart.getUserId())
 											   .content("{\"productId\":\"" + testProduct.getProductId() + 
-													     "\",\"count\":" + testProduct.getProductId() + "}")
+													    "\",\"count\":" + testProduct.getProductId() + "}")
 											   .contentType(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(requestBuilder).andExpect(status().isOk());
@@ -104,13 +110,13 @@ public class CartControllerTest {
 		
 		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
 		
-		ProductInCart testProduct = new ProductInCart("1", 1);
+		ProductInCart testProduct = new ProductInCart(testProductId, testProductTitle, testProductCount, testProductPrice);
 		
 		Mockito.when(service.deleteItemInCart(testCart.getUserId(), new ProductToDelete(testProduct.getProductId()))).thenReturn(true);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/api/delete-item/" + testCart.getUserId())
 				   											  .content("{\"productId\":\"" + testProduct.getProductId() + 
-				   													  	"\",\"count\":" + testProduct.getProductId() + "}")
+				   													   "\",\"count\":" + testProduct.getProductId() + "}")
 											   .contentType(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(requestBuilder).andExpect(status().isOk());		
@@ -122,7 +128,7 @@ public class CartControllerTest {
 		
 		Cart testCart = new Cart("5d018bc7017a80e18ff1737a");
 		
-		ProductInCart testProduct = new ProductInCart("1", 1);
+		ProductInCart testProduct = new ProductInCart(testProductId, testProductTitle, testProductCount, testProductPrice);
 		
 		Mockito.when(service.deleteAllItemsInCart(testCart.getUserId())).thenReturn(true);
 		

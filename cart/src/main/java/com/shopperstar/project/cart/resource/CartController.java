@@ -69,12 +69,38 @@ public class CartController {
 		return repository.findById(userId);
 	}
 	
+	@PostMapping("/api/update-delivery-method/{userId}")
+	public Cart updateDeliveryMethod(@PathVariable("userId") String userId, @Valid @RequestBody DeliveryMethod method) {
+		
+		Cart cart = findCartByUserId(userId);
+		
+		Double oldDeliveryMethodPrice = DeliveryMethod.getDeliveryPrice(cart.getDeliveryMethod());
+		
+		cart.setDeliveryMethod(method);
+		
+		try {
+			
+			logger.info("Attempting to save delivery method for cart: " + cart.getUserId());
+			repository.save(cart);
+			logger.info("Successfully saved delivery method for cart: " + cart.getUserId());
+			
+		} catch (Exception e) {
+			
+			logger.error("Failed to save delivery method for cart: " + cart.getUserId());
+			logger.error(e.toString());
+			
+		}
+		
+		return cart;
+	}
+	
 	@PostMapping("/api/add-item/{userId}")
 	public ProductInCart addItemToCart(@PathVariable("userId") String userId, @Valid @RequestBody ProductInCart updatedProduct) {
 		
 		Cart cart = findCartByUserId(userId);
 		
 		ProductInCart product = cart.getProductById(updatedProduct.getProductId());
+		cart.setTotalPrice(cart.getTotalPrice() + updatedProduct.getProductPrice() * updatedProduct.getCount());
 		cart.setProductCount(cart.getProductCount() + updatedProduct.getCount());
 		
 		if (product != null) {
@@ -85,7 +111,12 @@ public class CartController {
 		} else {
 			
 			logger.info("Creating new product in the cart...");
-			product = new ProductInCart(updatedProduct.getProductId(), updatedProduct.getCount());
+			
+			product = new ProductInCart(updatedProduct.getProductId(), 
+										updatedProduct.getProductTitle(), 
+										updatedProduct.getCount(), 
+										updatedProduct.getProductPrice());
+			
 			cart.getProducts().add(product);
 			
 		}
@@ -115,13 +146,15 @@ public class CartController {
 			return false;
 		}
 		
-		int removedProductCount = cart.removeProductById(productToDelete.getProductId());
+		Integer removedProductPrice = cart.getProductById(productToDelete.getProductId()).getProductPrice();
+		Integer removedProductCount = cart.removeProductById(productToDelete.getProductId());
 		
 		if (removedProductCount == 0) {
 			logger.warn("Item: " + productToDelete.getProductId() + " was not found in the cart...");
 			return false;
 		}
 		
+		cart.setTotalPrice(cart.getTotalPrice() - removedProductPrice * removedProductCount);
 		cart.setProductCount(cart.getProductCount() - removedProductCount);
 		
 		repository.save(cart);
