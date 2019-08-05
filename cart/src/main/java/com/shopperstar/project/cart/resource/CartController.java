@@ -1,5 +1,6 @@
 package com.shopperstar.project.cart.resource;
 
+import java.net.URI;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -7,12 +8,14 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.shopperstar.project.cart.model.Cart;
 import com.shopperstar.project.cart.model.ProductInCart;
@@ -28,12 +31,14 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartRepository.class);
 	
 	@PostMapping("/api/create-cart/{userId}")
-	public String createCart(@PathVariable String userId) {
+	public ResponseEntity<Cart> createCart(@PathVariable String userId) {
+		
+		Cart savedCart = null;
 		
 		if (getCart(userId).isPresent()) {
 			
 			logger.info("Cart for user: " + userId + " already exists");
-			return userId;
+			savedCart = getCart(userId).get();
 			
 		} else {
 			
@@ -41,8 +46,7 @@ public class CartController {
 				
 				logger.info("Creating new cart for user: " + userId);
 				Cart cart = new Cart(userId);
-				repository.save(cart);
-				return cart.getUserId();
+				savedCart = repository.save(cart);
 					
 			} catch (Exception e) {
 					
@@ -52,6 +56,12 @@ public class CartController {
 			}
 			
 		}
+		
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+												  .buildAndExpand(savedCart.getUserId())
+												  .toUri();
+		
+		return ResponseEntity.created(location).build();
 	}
 	
 	@GetMapping("/api/get-cart/{userId}")
@@ -125,7 +135,7 @@ public class CartController {
 		Cart cart = findCartByUserId(userId);
 		
 		if (cart == null) {
-			return false;
+			throw new CartNotFoundException("UserId: " + userId);
 		}
 		
 		cart.removeAllItems();
@@ -143,7 +153,7 @@ public class CartController {
 		if (optionalCart.get() == null) {
 			
 			logger.error("Cart for user: " + userId + " does not exist.");
-			return null;
+			throw new CartNotFoundException("UserId: " + userId);
 			
 		}
 		

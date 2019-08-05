@@ -65,9 +65,10 @@ public class ContactController {
 			
 			
 		} catch (Exception ex) {
-			
 			logger.error("Failed to delete contact request: " + id);
 			logger.error(ex.getMessage());
+			
+			throw new ContactNotFoundException("ID: " + id);
 			
 		}
 		

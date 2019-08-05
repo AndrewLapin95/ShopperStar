@@ -76,6 +76,8 @@ public class NewsletterSubscriptionController {
 		} catch (Exception ex) {
 			logger.error("Failed to delete subscription: " + id);
 			logger.error(ex.getMessage());
+			
+			throw new NewsletterSubscriptionNotFound("ID: " + id);
 		}
 		
 		return id;

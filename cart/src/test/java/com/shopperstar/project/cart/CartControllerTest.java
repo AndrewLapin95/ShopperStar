@@ -15,7 +15,9 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -84,7 +86,9 @@ public class CartControllerTest {
 		
 		ProductInCart testProduct = new ProductInCart("1", 1);
 		
-		Mockito.when(service.createCart(testCart.getUserId())).thenReturn(testCart.getUserId());
+		ResponseEntity responseEntity = new ResponseEntity(HttpStatus.ACCEPTED);
+		
+		Mockito.when(service.createCart(testCart.getUserId())).thenReturn(responseEntity);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/api/add-item/" + testCart.getUserId())
 											   .content("{\"productId\":\"" + testProduct.getProductId() + 
