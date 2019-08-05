@@ -1,13 +1,28 @@
 package com.shopperstar.project.checkout.model;
 
+import org.springframework.data.annotation.Id;
+
 public class OrderDetailsProduct {
 	
+	@Id
+	String productId;
 	String productTitle;
+	Integer count;
 	Integer productPrice;
-	
-	public OrderDetailsProduct(String productTitle, Integer productPrice) {
+
+	public OrderDetailsProduct(String productId, String productTitle, Integer count, Integer productPrice) {
+		this.productId = productId;
 		this.productTitle = productTitle;
+		this.count = count;
 		this.productPrice = productPrice;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public String getProductTitle() {
@@ -16,6 +31,14 @@ public class OrderDetailsProduct {
 
 	public void setProductTitle(String productTitle) {
 		this.productTitle = productTitle;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	public Integer getProductPrice() {
@@ -28,7 +51,7 @@ public class OrderDetailsProduct {
 
 	@Override
 	public String toString() {
-		return "OrderDetailsProduct [productTitle=" + productTitle + ", productPrice=" + productPrice + "]";
+		return "OrderDetailsProduct [productId=" + productId + ", productTitle=" + productTitle + ", count=" + count
+				+ ", productPrice=" + productPrice + "]";
 	}
-	
 }
