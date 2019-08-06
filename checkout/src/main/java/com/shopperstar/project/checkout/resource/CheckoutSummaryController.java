@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
+import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy;
+import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,7 @@ import com.shopperstar.project.checkout.model.Address;
 import com.shopperstar.project.checkout.model.CheckoutSummary;
 import com.shopperstar.project.checkout.model.OrderDetails;
 import com.shopperstar.project.checkout.repository.AddressRepository;
+import com.shopperstar.project.checkout.repository.OrderDetailsRepository;
 
 @RestController
 public class CheckoutSummaryController {
@@ -42,6 +45,9 @@ public class CheckoutSummaryController {
 	
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private OrderDetailsRepository orderDetailsRepository;
 	
 	@GetMapping("/api/get-checkout-summary/{userId}")
 	public CheckoutSummary getCheckoutSummary(@PathVariable String userId) {
@@ -142,5 +148,27 @@ public class CheckoutSummaryController {
 		}
 		
 		return orderDetails;
+	}
+	
+	@SqsListener(value = "${cloud.aws.queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+	public void getMessage(OrderDetails orderDetails) {
+		
+		try {
+			
+			logger.info("Saving order for user: " + orderDetails.getUserId());
+			orderDetailsRepository.save(orderDetails);
+			logger.info("Successfully saved order for user: " + orderDetails.getUserId());
+			
+		} catch (Exception e) {
+			
+			logger.error("Failed to save order for: " + orderDetails.getUserId());
+			logger.error(e.toString());
+			
+		}
+	}
+	
+	@GetMapping("/api/get-order-details/{userId}")
+	public Optional<OrderDetails> getOrderDetails(@PathVariable String userId) {
+		return orderDetailsRepository.findById(userId);
 	}
 }
