@@ -9,7 +9,9 @@ public class OrderDetailsProduct {
 	String productTitle;
 	Integer count;
 	Integer productPrice;
-
+	
+	public OrderDetailsProduct() {}
+	
 	public OrderDetailsProduct(String productId, String productTitle, Integer count, Integer productPrice) {
 		this.productId = productId;
 		this.productTitle = productTitle;
