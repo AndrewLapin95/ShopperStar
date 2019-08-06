@@ -149,26 +149,4 @@ public class CheckoutSummaryController {
 		
 		return orderDetails;
 	}
-	
-	@SqsListener(value = "${cloud.aws.queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
-	public void getMessage(OrderDetails orderDetails) {
-		
-		try {
-			
-			logger.info("Saving order for user: " + orderDetails.getUserId());
-			orderDetailsRepository.save(orderDetails);
-			logger.info("Successfully saved order for user: " + orderDetails.getUserId());
-			
-		} catch (Exception e) {
-			
-			logger.error("Failed to save order for: " + orderDetails.getUserId());
-			logger.error(e.toString());
-			
-		}
-	}
-	
-	@GetMapping("/api/get-order-details/{userId}")
-	public Optional<OrderDetails> getOrderDetails(@PathVariable String userId) {
-		return orderDetailsRepository.findById(userId);
-	}
 }
