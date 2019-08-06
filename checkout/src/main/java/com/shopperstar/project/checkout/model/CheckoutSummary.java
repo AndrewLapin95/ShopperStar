@@ -10,6 +10,8 @@ public class CheckoutSummary {
 	String deliveryMethod;
 	List<OrderDetailsProduct> products;
 	
+	public CheckoutSummary() {}
+	
 	public CheckoutSummary(String userId, Integer productCount, Double totalPrice, 
 						   String deliveryMethod, List<OrderDetailsProduct> products) {
 		

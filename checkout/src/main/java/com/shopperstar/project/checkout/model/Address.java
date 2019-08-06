@@ -28,7 +28,8 @@ public class Address {
 
 	public Address(String userId, String firstName, String lastName, 
 				   String company, String country, String address, 
-				   String zipCode, String city, String province) {
+				   String zipCode, String city, String province, 
+				   String phoneNumber, String email) {
 		
 		this.userId = userId;
 		this.firstName = firstName;
@@ -39,6 +40,8 @@ public class Address {
 		this.zipCode = zipCode;
 		this.city = city;
 		this.province = province;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
 	}
 
 	public String getUserId() {

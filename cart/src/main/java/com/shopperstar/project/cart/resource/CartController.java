@@ -29,7 +29,7 @@ public class CartController {
 	@Autowired
 	private CartRepository repository;
 	
-	private static final Logger logger = LoggerFactory.getLogger(CartRepository.class);
+	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@PostMapping("/api/create-cart/{userId}")
 	public ResponseEntity<Cart> createCart(@PathVariable String userId) {
