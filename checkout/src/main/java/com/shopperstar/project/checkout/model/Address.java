@@ -24,7 +24,7 @@ public class Address {
 	@Email
 	String email;
 	
-	
+	public Address() {}
 
 	public Address(String userId, String firstName, String lastName, 
 				   String company, String country, String address, 
