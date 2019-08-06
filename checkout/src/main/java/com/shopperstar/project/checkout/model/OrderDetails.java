@@ -1,13 +1,17 @@
 package com.shopperstar.project.checkout.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "OrdersToProcess")
 public class OrderDetails {
 	
 	@Id
 	String userId;
 	Address address;
 	CheckoutSummary checkoutSummary;
+	
+	public OrderDetails() {}
 	
 	public OrderDetails(String userId, Address address, CheckoutSummary checkoutSummary) {
 		this.userId = userId;

@@ -1,12 +1,10 @@
-package com.shopperstar.project.checkout.model;
+package com.shopperstar.project.distribution.model;
 
 import javax.validation.constraints.Email;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Address")
-public class Address {
+public class DeliveryAddress {
 	
 	@Id
 	String userId;
@@ -24,9 +22,9 @@ public class Address {
 	@Email
 	String email;
 	
-	public Address() {}
-
-	public Address(String userId, String firstName, String lastName, 
+	public DeliveryAddress() {}
+	
+	public DeliveryAddress(String userId, String firstName, String lastName, 
 				   String company, String country, String address, 
 				   String zipCode, String city, String province, 
 				   String phoneNumber, String email) {
@@ -42,11 +40,15 @@ public class Address {
 		this.province = province;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		
 	}
+
+
 
 	public String getUserId() {
 		return userId;
 	}
+
 
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -134,8 +136,9 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", company="
-				+ company + ", country=" + country + ", address=" + address + ", zipCode=" + zipCode + ", city=" + city
-				+ ", province=" + province + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
+		return "DeliveryAddress [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", company=" + company + ", country=" + country + ", address=" + address + ", zipCode=" + zipCode
+				+ ", city=" + city + ", province=" + province + ", phoneNumber=" + phoneNumber + ", email=" + email
+				+ "]";
 	}
 }

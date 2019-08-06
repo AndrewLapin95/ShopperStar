@@ -1,4 +1,4 @@
-package com.shopperstar.project.distribution.distribution;
+package com.shopperstar.project.distribution;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
