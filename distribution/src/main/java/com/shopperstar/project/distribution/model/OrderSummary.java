@@ -2,7 +2,6 @@ package com.shopperstar.project.distribution.model;
 
 import java.util.List;
 
-
 public class OrderSummary {
 	
 	String userId;

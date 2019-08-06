@@ -9,14 +9,14 @@ public class Distribution {
 	@Id
 	String userId;
 	DeliveryAddress address;
-	OrderSummary summary;
+	OrderSummary checkoutSummary;
 	
 	public Distribution() {}
 	
-	public Distribution(String userId, DeliveryAddress address, OrderSummary summary) {
+	public Distribution(String userId, DeliveryAddress address, OrderSummary checkoutSummary) {
 		this.userId = userId;
 		this.address = address;
-		this.summary = summary;
+		this.checkoutSummary = checkoutSummary;
 	}
 
 	public String getUserId() {
@@ -35,16 +35,16 @@ public class Distribution {
 		this.address = address;
 	}
 
-	public OrderSummary getSummary() {
-		return summary;
+	public OrderSummary getCheckoutSummary() {
+		return checkoutSummary;
 	}
 
-	public void setSummary(OrderSummary summary) {
-		this.summary = summary;
+	public void setCheckoutSummary(OrderSummary checkoutSummary) {
+		this.checkoutSummary = checkoutSummary;
 	}
 
 	@Override
 	public String toString() {
-		return "Distribution [userId=" + userId + ", address=" + address + ", summary=" + summary + "]";
+		return "Distribution [userId=" + userId + ", address=" + address + ", checkoutSummary=" + checkoutSummary + "]";
 	}
 }
