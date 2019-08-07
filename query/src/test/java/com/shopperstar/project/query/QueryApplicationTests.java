@@ -1,4 +1,4 @@
-package com.shopperstar.project.query.query;
+package com.shopperstar.project.query;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

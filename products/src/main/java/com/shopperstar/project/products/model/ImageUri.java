@@ -4,6 +4,8 @@ public class ImageUri {
 	
 	String imageUri;
 	
+	public ImageUri() {}
+	
 	public ImageUri(String imageUri) {
 		this.imageUri = imageUri;
 	}

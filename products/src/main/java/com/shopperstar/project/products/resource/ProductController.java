@@ -18,12 +18,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.shopperstar.project.products.model.ElasticSearchProductMapping;
 import com.shopperstar.project.products.model.Product;
+import com.shopperstar.project.products.repository.ElasticSearchProductRepository;
 import com.shopperstar.project.products.repository.ProductRepository;
 
 @RestController
 public class ProductController {
-
+	
+	@Autowired
+	private ElasticSearchProductRepository elasticsearchRepository;
+	
 	@Autowired
 	private ProductRepository repository;
 	
@@ -36,12 +41,25 @@ public class ProductController {
 		
 		try {
 			
-			logger.info("Creating new product:" + newProduct.getTitle());
+			logger.info("Creating new product :" + newProduct.getTitle() + " in the database");
 			savedProduct = repository.save(newProduct);
 			
 		} catch (Exception ex) {
 			
-			logger.error("Failed to create new product: " + newProduct.getTitle());
+			logger.error("Failed to create new product: " + newProduct.getTitle() + " in the database");
+			logger.error(ex.toString());
+		}
+		
+		ElasticSearchProductMapping newMapping = savedProduct.convertFromProduct();
+		
+		try {
+			
+			logger.info("Creating new product: " + newMapping.getTitle() + " in the elasticsearch cluster");
+			elasticsearchRepository.save(newMapping);
+			
+		} catch (Exception ex) {
+			
+			logger.error("Failed to create new product: " + newMapping.getTitle() + " in the elasticsearch cluster");
 			logger.error(ex.toString());
 		}
 		
@@ -73,9 +91,22 @@ public class ProductController {
 		
 		try {
 			
-			logger.info("Attempting to delete product: " + id);
+			logger.info("Attempting to delete product: " + id + " from the database");
 			repository.deleteById(id);
-			logger.info("Successfully deleted product with id: " + id);
+			logger.info("Successfully deleted product with id: " + id + " from the database");
+			
+		} catch (Exception ex) {
+			
+			logger.error("Failed to delete product: " + id);
+			logger.error(ex.toString());
+			
+		}
+		
+		try {
+			
+			logger.info("Attempting to delete product: " + id + " from the cluster");
+			elasticsearchRepository.deleteById(id);
+			logger.info("Successfully deleted product with id: " + id + "from the cluster");
 			
 		} catch (Exception ex) {
 			

@@ -1,6 +1,5 @@
 package com.shopperstar.project.products.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -121,6 +120,23 @@ public class Product {
 		return "Product [id=" + id + ", title=" + title + ", oldPrice=" + oldPrice + ", newPrice=" + newPrice
 				+ ", category=" + category + ", availability=" + availability + ", images=" + images + ", description="
 				+ description + "]";
+	}
+	
+	public ElasticSearchProductMapping convertFromProduct() {
+		
+		String newId = this.getId();
+		String newCategory = this.getCategory().toString();
+		
+		String newImage = "";
+		if (this.getImages().size() > 0) {
+			newImage = this.getImages().get(0).getImageUri();
+		}
+		
+		Integer newPrice = this.getNewPrice();
+		String newTitle = this.getTitle();
+		
+		return new ElasticSearchProductMapping(newId, newCategory, newImage, newPrice, newTitle);
+		
 	}
 	
 }
