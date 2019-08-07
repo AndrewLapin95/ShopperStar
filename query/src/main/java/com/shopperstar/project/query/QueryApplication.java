@@ -1,4 +1,4 @@
-package com.shopperstar.project.query.query;
+package com.shopperstar.project.query;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -34,7 +34,6 @@ public class DistributionController {
 	
 	@SqsListener(value = "${cloud.aws.queue.name}", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
 	public void getMessage(Distribution distribution) {
-		System.out.println(distribution.toString());
 		try {
 			
 			logger.info("Saving order for user: " + distribution.getUserId());

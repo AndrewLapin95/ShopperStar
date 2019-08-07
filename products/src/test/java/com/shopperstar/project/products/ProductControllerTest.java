@@ -1,4 +1,4 @@
-package com.shopperstar.project.products.products;
+package com.shopperstar.project.products;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.times;
