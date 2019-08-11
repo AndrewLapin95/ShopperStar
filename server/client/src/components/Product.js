@@ -1,4 +1,5 @@
 import React from "react";
+import Fade from 'react-reveal/Fade';
 
 class Product extends React.Component {
     
@@ -37,14 +38,16 @@ class Product extends React.Component {
     render() {
 
         return (
-            <div className="product">
-                <div className="product_image"><img src={this.props.image} alt="" /></div>
-                {this.verifyExtraElement()}
-                <div className="product_content">
-                    <div className="product_title"><a href="product.html">{this.props.title}</a></div>
-                    {this.verifyPrice()}
+            <Fade>
+                <div key={this.props.id} className="product">
+                    <div className="product_image"><img src={this.props.image} alt="" /></div>
+                    {this.verifyExtraElement()}
+                    <div className="product_content">
+                        <div className="product_title"><a href="/products?category=phones">{this.props.title}</a></div>
+                        {this.verifyPrice()}
+                    </div>
                 </div>
-            </div>
+            </Fade>
         );
     }
 }
