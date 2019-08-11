@@ -1,7 +1,9 @@
 package com.shopperstar.project.query.model;
 
+import org.apache.lucene.document.FieldType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 @Document(indexName = "products", type = "product")
 public class SearchedProduct {
