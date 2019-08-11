@@ -37,10 +37,12 @@ public class QueryController {
 	
 	@GetMapping("/api/search-products/{entry}")
 	public List<SearchedProduct> searchProducts(@PathVariable String entry) {
+		
 		QueryBuilder query = QueryBuilders.boolQuery()
-				                          .should(QueryBuilders.commonTermsQuery("title", entry))
-				                          .should(QueryBuilders.commonTermsQuery("category", entry))
-				                          .minimumShouldMatch(1);
+				.should(QueryBuilders.commonTermsQuery("title", entry))
+				.should(QueryBuilders.commonTermsQuery("category", entry))
+				.minimumShouldMatch(1);
+		
 		return repository.search(query);
 	}
 }
