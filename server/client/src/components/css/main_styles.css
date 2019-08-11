@@ -1226,7 +1226,7 @@ section {
 
 .icon_boxes {
     width: 100%;
-    padding-top: 99px;
+    padding-top: 100x;
     padding-bottom: 99px;
     background: #FFFFFF;
     z-index: 2;
@@ -1237,6 +1237,7 @@ section {
 .icon_box {
     width: 100%;
     text-align: center;
+    margin-top: 50px;
 }
 
 .icon_box_image {
