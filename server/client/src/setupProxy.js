@@ -3,6 +3,7 @@ const proxy = require('http-proxy-middleware')
 module.exports = app => {
     app.use(proxy("/api/subscribe", { target: "http://localhost:8081" }));
     app.use(proxy("/api/save-contact", { target: "http://localhost:8081" }));
+    app.use(proxy("/api/get-product", { target: "http://localhost:8084" }));
     app.use(proxy("/api/get-products", { target: "http://localhost:8085" }));
     app.use(proxy("/api/get-products-by-category", { target: "http://localhost:8085" }));
     app.use(proxy("/api/get-products-by-title", { target: "http://localhost:8085" }));

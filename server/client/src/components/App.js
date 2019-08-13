@@ -34,7 +34,7 @@ class App extends React.Component {
                     <Route exact path="/products" component={Products} />
                     <Route exact path="/categories" component={Categories} />
                     <Route exact path="/cart" component={Cart} />
-                    <Route exact path="/product_detailed" component={ProductDetailed} />
+                    <Route exact path="/product/:id" component={ProductDetailed} />
                     <Route exact path="/checkout" component={Checkout} />
                     <Route exact path="/return" component={ReturnPage} />
                 </div>

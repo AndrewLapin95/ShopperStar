@@ -8,6 +8,12 @@ class Product extends React.Component {
         this.imageRef = React.createRef();
     }
 
+    getImageUrl() {
+        if (this.props.category === "false") {
+            return "/product/" + this.props.id;
+        }
+    }
+
     verifyPrice() {
 
         let priceElement;
@@ -40,10 +46,10 @@ class Product extends React.Component {
         return (
             <Fade>
                 <div key={this.props.id} className="product">
-                    <div className="product_image"><img src={this.props.image} alt="" /></div>
+                    <div className="product_image"><img src={this.props.image} alt="" height="190" width="225" /></div>
                     {this.verifyExtraElement()}
                     <div className="product_content">
-                        <div className="product_title"><a href="/products?category=phones">{this.props.title}</a></div>
+                        <div className="product_title"><a href={this.getImageUrl()}>{this.props.title}</a></div>
                         {this.verifyPrice()}
                     </div>
                 </div>
