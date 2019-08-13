@@ -11,7 +11,7 @@ class ProductList extends React.Component {
     render() {
 
         const products = this.props.products.map((image) => {
-            return <Product key={image.id} image={image.image} title={image.title} />
+            return <Product key={image.id} id = {image.id} image={image.image} title={image.title} category="false"/>
         });
 
 
