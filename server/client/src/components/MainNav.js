@@ -10,10 +10,10 @@ class MainNav extends React.Component {
                     <li className="hassubs">
                         <a href="/categories">Categories</a>
                         <ul>
-                            <li><a href="/products">Phones</a></li>
-                            <li><a href="/products">Laptops</a></li>
-                            <li><a href="/products">Cameras</a></li>
-                            <li><a href="/products">Headphones</a></li>
+                            <li><a href="/products?category=phones">Phones</a></li>
+                            <li><a href="/products?category=laptops">Laptops</a></li>
+                            <li><a href="/products?category=cameras">Cameras</a></li>
+                            <li><a href="/products?category=headphones">Headphones</a></li>
                         </ul>
                     </li>
                     <li><a href="/contact">Contact</a></li>

@@ -1,15 +1,16 @@
 import React from "react"; 
 import Product from "./Product";
 import Newsletter from "./Newsletter";
+import IconBoxes from "./IconBoxes";
 
 class Categories extends React.Component {
     constructor(props) {
         super(props);
         this.isCategory = "true"
-        this.firstProductUrl = "https://shopperstar.s3.amazonaws.com/product1_1.jpg";
-        this.secondProductUrl = "https://shopperstar.s3.amazonaws.com/product6_1.jpg";
-        this.thirdProductUrl = "https://shopperstar.s3.amazonaws.com/product11_1.jpg";
-        this.fourthProductUrl = "https://shopperstar.s3.amazonaws.com/product16_1.jpg";
+        this.firstProductUrl = "https://shopperstar.s3.amazonaws.com/product4_1.jpg";
+        this.secondProductUrl = "https://shopperstar.s3.amazonaws.com/product8_1.jpg";
+        this.thirdProductUrl = "https://shopperstar.s3.amazonaws.com/product13_1.jpg";
+        this.fourthProductUrl = "https://shopperstar.s3.amazonaws.com/product18_1.jpg";
     }
 
     render() { 
@@ -31,6 +32,12 @@ class Categories extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <IconBoxes />
+
+                <Newsletter newsletterTitle="Subscribe to our newsletter"
+                            newsletterText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros"
+                            newsletterButtonText="Subscribe" />
             </div>
         ) 
     } 
