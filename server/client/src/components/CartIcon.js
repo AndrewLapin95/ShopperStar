@@ -1,6 +1,7 @@
 import React from "react";
 
 class CartIcon extends React.Component {
+    
     state = { itemsCount: 0 };
     
     getState() {
