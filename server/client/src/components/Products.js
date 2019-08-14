@@ -1,8 +1,8 @@
 import React from "react"; 
-import Product from "./Product"
-import SearchMenu from "./SearchMenu"
-import IconBoxes from "./IconBoxes"
-import ProductList from "./ProductList"
+import SearchMenu from "./SearchMenu"; 
+import IconBoxes from "./IconBoxes"; 
+import ProductList from "./ProductList"; 
+import Newsletter from "./Newsletter";
 import axios from "axios";
 
 class Products extends React.Component { 
@@ -30,7 +30,7 @@ class Products extends React.Component {
                 products: response.data
             });
         }
-        
+
     }
 
     async onSearchSubmit(entry) {

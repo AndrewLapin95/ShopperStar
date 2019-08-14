@@ -11,6 +11,8 @@ class Product extends React.Component {
     getImageUrl() {
         if (this.props.category === "false") {
             return "/product/" + this.props.id;
+        } else {
+            return this.props.src;
         }
     }
 

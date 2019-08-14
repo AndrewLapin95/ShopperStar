@@ -88,15 +88,9 @@ class DetailsImage extends React.Component {
 
         this.state = {
             activeImage: ""
-        }
+        };
 
         this.setAsActive = this.setAsActive.bind(this);
-    }
-
-    componentDidMount() {
-        this.setState({
-            activeImage: this.props.image1
-        });
     }
 
     setAsActive(image) {
@@ -106,10 +100,18 @@ class DetailsImage extends React.Component {
     }
 
     render() {
+        
+        let curActiveImage = "";
+        
+        if (this.state.activeImage == "") {
+            curActiveImage = this.props.image1;
+        } else {
+            curActiveImage = this.state.activeImage;
+        }
 
         return (
             <div className="details_image">
-                <div className="details_image_large"><img src={this.state.activeImage} alt="" /></div>
+                <div className="details_image_large"><img src={curActiveImage} alt="" /></div>
                 <div className="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
                     <div className="details_image_thumbnail" onClick={() => this.setAsActive(this.props.image1)} data-image={this.props.image1}><img src={this.props.image1} alt="" /></div>
                     <div className="details_image_thumbnail" onClick={() => this.setAsActive(this.props.image2)} data-image={this.props.image2}><img src={this.props.image2} alt="" /></div>
@@ -148,8 +150,6 @@ class ProductDetailed extends React.Component {
     async componentDidMount() {
 
         const response = await axios.get("/api/get-product/" + this.props.match.params.id);
-        
-        console.log(response.data);
 
         this.setState({
             product: response.data
