@@ -4,6 +4,7 @@ module.exports = app => {
     app.use(proxy("/api/subscribe", { target: "http://localhost:8081" }));
     app.use(proxy("/api/save-contact", { target: "http://localhost:8081" }));
     app.use(proxy("/api/create-cart", { target: "http://localhost:8082" }));
+    app.use(proxy("/api/delete-items", { target: "http://localhost:8082" }));
     app.use(proxy("/api/add-item", { target: "http://localhost:8082" }));
     app.use(proxy("/api/get-cart", { target: "http://localhost:8082" }));
     app.use(proxy("/api/get-product", { target: "http://localhost:8084" }));
