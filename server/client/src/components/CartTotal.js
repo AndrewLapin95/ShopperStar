@@ -1,28 +1,29 @@
 import React from "react"; 
 
-class CartTotal extends React.Component { 
+class CartTotal extends React.Component {
+    
+    constructor(props) {
+        super(props);
+    }
+
     render() { 
         return (
-            <div class="cart_total">
-                <div class="section_title">Cart total</div>
-                <div class="section_subtitle">Final info</div>
-                <div class="cart_total_container">
+            <div className="cart_total">
+                <div className="section_title">Cart total</div>
+                <div className="section_subtitle">Final info</div>
+                <div className="cart_total_container">
                     <ul>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <div class="cart_total_title">Subtotal</div>
-                            <div class="cart_total_value ml-auto">$790.90</div>
+                        <li className="d-flex flex-row align-items-center justify-content-start">
+                            <div className="cart_total_title">Shipping</div>
+                            <div className="cart_total_value ml-auto">${this.props.shippingPrice}</div>
                         </li>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <div class="cart_total_title">Shipping</div>
-                            <div class="cart_total_value ml-auto">Free</div>
-                        </li>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <div class="cart_total_title">Total</div>
-                            <div class="cart_total_value ml-auto">$790.90</div>
+                        <li className="d-flex flex-row align-items-center justify-content-start">
+                            <div className="cart_total_title">Total</div>
+                            <div className="cart_total_value ml-auto">${this.props.totalPrice}</div>
                         </li>
                     </ul>
                 </div>
-                <div class="button checkout_button"><a href="/checkout">Proceed to checkout</a></div>
+                <div className="button checkout_button"><a href="/checkout">Proceed to checkout</a></div>
             </div>
         ); 
     } 

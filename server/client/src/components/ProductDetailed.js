@@ -10,10 +10,27 @@ class DetailsContent extends React.Component {
             quantity: 0
         };
 
+        this.handleClick = this.handleClick.bind(this);
         this.getAvailability = this.getAvailability.bind(this);
         this.getPrices = this.getPrices.bind(this);
         this.incrementQuantity = this.incrementQuantity.bind(this);
         this.decrementQuantity = this.decrementQuantity.bind(this);
+    }
+
+    handleClick(event) {
+
+        event.preventDefault();
+        const url = 
+        axios.post("/api/add-item/" + this.props.userId, {
+            
+            productId: this.props.id,
+            productTitle: this.props.title,
+            count: this.state.quantity,
+            productPrice: this.props.newPrice
+
+        }).then(res => {
+            console.log(res);
+        });
     }
 
     getAvailability() {
@@ -73,7 +90,7 @@ class DetailsContent extends React.Component {
                             <div id="quantity_dec_button" onClick={this.decrementQuantity} className="quantity_dec quantity_control"><i className="fa fa-chevron-down" aria-hidden="true"></i></div>
                         </div>
                     </div>
-                    <div className="button cart_button"><a href="#">Add to cart</a></div>
+                    <div className="button cart_button" onClick={this.handleClick}><a href="/cart">Add to cart</a></div>
                 </div>
             </div>
         ); 
@@ -129,7 +146,9 @@ class ProductDetailed extends React.Component {
         super(props);
         
         this.state = {
+            userId: "",
             product: {
+                id: "",
                 title: "",
                 oldPrice: 0,
                 newPrice: 0,
@@ -149,11 +168,14 @@ class ProductDetailed extends React.Component {
 
     async componentDidMount() {
 
+        const user = await axios.get("/api/current_user/");
         const response = await axios.get("/api/get-product/" + this.props.match.params.id);
 
         this.setState({
+            userId: user.data._id,
             product: response.data
         });
+        console.log(this.state);
     }
 
     render() {
@@ -172,7 +194,9 @@ class ProductDetailed extends React.Component {
                             </div>
 
                             <div className="col-lg-6">
-                                <DetailsContent title={this.state.product.title}
+                                <DetailsContent userId={this.state.userId}
+                                                id={this.state.product.id}
+                                                title={this.state.product.title}
                                                 oldPrice={this.state.product.oldPrice}
                                                 newPrice={this.state.product.newPrice}
                                                 availability={this.state.product.availability}

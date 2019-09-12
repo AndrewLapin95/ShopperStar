@@ -15,14 +15,6 @@ class Checkout extends React.Component {
 
                             <div class="col-lg-6">
                                 <div class="billing checkout_section">
-                                    <div class="section_title">Billing Address</div>
-                                    <div class="checkout_extra">
-                                        <div>
-                                            <input type="checkbox" id="saved_address" name="regular_checkbox" class="regular_checkbox" />
-                                            <label for="checkbox_account"><img src={this.checkImageUrl} alt="" /></label>
-                                            <span class="checkbox_title">Use saved address (address goes here)</span>
-                                        </div>
-                                    </div>
                                     <div class="section_title">Enter your address info</div>
                                     <div class="checkout_form_container">
                                         <form action="#" id="checkout_form" class="checkout_form">
@@ -86,13 +78,6 @@ class Checkout extends React.Component {
                                             <div>
                                                 <label for="checkout_email">Email Address*</label>
                                                 <input type="phone" id="checkout_email" class="checkout_input" required="required" />
-                                            </div>
-                                            <div class="checkout_extra">
-                                                <div>
-                                                    <input type="checkbox" id="checkbox_account" name="regular_checkbox" class="regular_checkbox" />
-                                                    <label for="checkbox_account"><img src={this.checkImageUrl} alt="" /></label>
-                                                    <span class="checkbox_title">Save address</span>
-                                                </div>
                                             </div>
                                         </form>
                                     </div>
