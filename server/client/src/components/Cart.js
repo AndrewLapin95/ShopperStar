@@ -24,11 +24,19 @@ class Cart extends React.Component {
         this.setState({
             cart: cart.data
         });
-
-        console.log(this.state.cart);
     }
     
-    render() { 
+    render() {
+        
+        var totalPrice = this.state.cart.totalPrice;
+        var shippingPrice = "Free";
+        
+        if (this.state.cart.deliveryMethod == "STANDARD_DELIVERY") {
+            shippingPrice = "1.99";
+        } else if (this.state.cart.deliveryMethod == "NEXT_DAY_DELIVERY") {
+            shippingPrice = "4.99";
+        }
+
         return (
             <div className="super_container">
                 <div className="cart_info">
@@ -39,7 +47,8 @@ class Cart extends React.Component {
                                 <DeliveryPanel />
                             </div>
                             <div className="col-lg-6 offset-lg-2">
-                                <CartTotal />
+                                <CartTotal  totalPrice={totalPrice}
+                                            shippingPrice={shippingPrice}/>
                             </div>
                         </div>
                     </div>

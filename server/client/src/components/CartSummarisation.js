@@ -45,7 +45,13 @@ class CartItem extends React.Component {
 } 
 
 class CartSummarisation extends React.Component { 
-    render() { 
+    
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
         return (
             <div className="cart_summarisation">
                 <div className="row">
@@ -67,7 +73,7 @@ class CartSummarisation extends React.Component {
                 <div className="row row_cart_buttons">
                     <div className="col">
                         <div className="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                            <div className="button continue_shopping_button"><a href="#">Continue shopping</a></div>
+                            <div className="button continue_shopping_button"><a href="/products">Continue shopping</a></div>
                             <div className="cart_buttons_right ml-lg-auto">
                                 <div className="button clear_cart_button"><a href="#">Clear cart</a></div>
                                 <div className="button update_cart_button"><a href="#">Update cart</a></div>
