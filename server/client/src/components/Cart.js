@@ -10,7 +10,7 @@ class Cart extends React.Component {
             cart: {},
             products: [],
             userId: ""
-        } 
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateState = this.updateState.bind(this);
@@ -28,13 +28,14 @@ class Cart extends React.Component {
         this.updateState();
 
     }
-    
+
     async updateState() {
-
+        
         const user = await axios.get("/api/current_user/"); 
-        const createCart = await axios.post("/api/create-cart/" + user.data._id); 
-        const cart = await axios.get("/api/get-cart/" + user.data._id);
+        
+        await axios.post("/api/create-cart/" + user.data._id);
 
+        const cart = await axios.get("/api/get-cart/" + user.data._id);
         const updatedProducts = cart.data.products;
 
         for (let i = 0; i < updatedProducts.length; i++) {
@@ -61,6 +62,7 @@ class Cart extends React.Component {
         });
 
         const cart = await axios.get("/api/get-cart/" + this.state.userId);
+
         this.setState({
             cart: cart.data,
         });
@@ -68,13 +70,13 @@ class Cart extends React.Component {
         this.forceUpdate();
     }
 
-    async componentDidMount() { 
+    async componentDidMount() {
         this.updateState();
     }
     
     render() { 
 
-        let totalPrice = this.state.cart.totalPrice; 
+        let totalPrice = this.state.cart.totalPrice;
         let shippingPrice = "Free";
 
         if (this.state.cart.deliveryMethod == "STANDARD_DELIVERY") { 

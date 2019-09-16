@@ -9,14 +9,14 @@ class ReturnPageMain extends React.Component {
     
     render() {
         return (
-            <div class="return_page">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2">
-                        <div class="return_content text-center">
-                            <div class="return_text">{this.props.text}</div>
-                            <div class="return_form_container">
+            <div className="return_page">
+                <div className="row">
+                    <div className="col-lg-8 offset-lg-2">
+                        <div className="return_content text-center">
+                            <div className="return_text">{this.props.text}</div>
+                            <div className="return_form_container">
                                 <form action="/" id="return_form" className="return_form">
-                                    <button class="return_button trans_200"><span>{this.props.button}</span></button>
+                                    <button className="return_button trans_200"><span>{this.props.button}</span></button>
                                 </form>
                             </div>
                         </div>
