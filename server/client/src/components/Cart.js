@@ -10,10 +10,11 @@ class Cart extends React.Component {
             cart: {},
             products: [],
             userId: ""
-        } 
+        }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.updateDeliveryMethod = this.updateDeliveryMethod.bind(this);
     }
 
     async handleSubmit(event) {
@@ -27,13 +28,14 @@ class Cart extends React.Component {
         this.updateState();
 
     }
-    
+
     async updateState() {
-
+        
         const user = await axios.get("/api/current_user/"); 
-        const createCart = await axios.post("/api/create-cart/" + user.data._id); 
-        const cart = await axios.get("/api/get-cart/" + user.data._id);
+        
+        await axios.post("/api/create-cart/" + user.data._id);
 
+        const cart = await axios.get("/api/get-cart/" + user.data._id);
         const updatedProducts = cart.data.products;
 
         for (let i = 0; i < updatedProducts.length; i++) {
@@ -51,19 +53,36 @@ class Cart extends React.Component {
 
     }
 
-    async componentDidMount() { 
+    async updateDeliveryMethod(newDeliveryMethod) {
+        
+        await axios.post("/api/update-delivery-method/" + this.state.userId, {
+            deliveryMethod: newDeliveryMethod
+        }).then(res => {
+            console.log(res);
+        });
+
+        const cart = await axios.get("/api/get-cart/" + this.state.userId);
+
+        this.setState({
+            cart: cart.data,
+        });
+
+        this.forceUpdate();
+    }
+
+    async componentDidMount() {
         this.updateState();
-    } 
+    }
     
     render() { 
 
-        let totalPrice = this.state.cart.totalPrice; 
+        let totalPrice = this.state.cart.totalPrice;
         let shippingPrice = "Free";
 
         if (this.state.cart.deliveryMethod == "STANDARD_DELIVERY") { 
-            shippingPrice = "$1.99"; 
+            shippingPrice = "$5"; 
         } else if (this.state.cart.deliveryMethod == "NEXT_DAY_DELIVERY") { 
-            shippingPrice = "$4.99";
+            shippingPrice = "$25";
         } 
 
         const renderedProducts = this.state.products.map((product) => {
@@ -145,21 +164,23 @@ class Cart extends React.Component {
                                     <div className="section_title">Shipping method</div>
                                     <div className="section_subtitle">Select the one you want</div>
                                     <div className="delivery_options">
-                                        <label className="delivery_option clearfix">Next day delivery
-                                                <input type="radio" name="radio" />
-                                                <span className="checkmark"></span>
-                                                <span className="delivery_price">$4.99</span>
-                                        </label>
-                                        <label className="delivery_option clearfix">Standard delivery
-                                                <input type="radio" name="radio" />
-                                                <span className="checkmark"></span>
-                                                <span className="delivery_price">$1.99</span>
-                                        </label>
-                                        <label className="delivery_option clearfix">Personal pickup
-                                                <input type="radio" name="radio" />
-                                                <span className="checkmark"></span>
-                                                <span className="delivery_price">Free</span>
-                                        </label>
+                                        <form name="UpdateDelivery" onSubmit={this.handleUpdate}>
+                                            <label className="delivery_option clearfix">Next day delivery
+                                                    <input onClick={() => this.updateDeliveryMethod("NEXT_DAY_DELIVERY")}type="radio" name="radio" value="NEXT_DAY_DELIVERY" />
+                                                    <span className="checkmark"></span>
+                                                    <span className="delivery_price">$25</span>
+                                            </label>
+                                            <label className="delivery_option clearfix">Standard delivery
+                                                    <input onClick={() => this.updateDeliveryMethod("STANDARD_DELIVERY")} type="radio" name="radio" value="STANDARD_DELIVERY" />
+                                                    <span className="checkmark"></span>
+                                                    <span className="delivery_price">$5</span>
+                                            </label>
+                                            <label className="delivery_option clearfix">Personal pickup
+                                                    <input onClick={() => this.updateDeliveryMethod("PICKUP")} type="radio" name="radio" value="PICKUP" />
+                                                    <span className="checkmark"></span>
+                                                    <span className="delivery_price">Free</span>
+                                            </label>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +200,7 @@ class Cart extends React.Component {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="button newsletter_button"><a href="/checkout">Proceed to checkout</a></div>
+                                    <div className="button newsletter_button"><a href="/checkout">Checkout</a></div>
                                 </div>
                             </div>
                         </div>
