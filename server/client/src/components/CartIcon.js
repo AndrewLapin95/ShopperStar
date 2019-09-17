@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { connect } from 'react-redux';
 
 class CartIcon extends React.Component {
     
@@ -14,17 +15,30 @@ class CartIcon extends React.Component {
         });
     }
 
-    render() {
+    renderContent() {
+        
         var curState = "(" + this.state.itemsCount + ")";
 
-        return (
-            <a href="/cart">
+        if (this.props.auth == false) {
+            return "";
+        } else {
+            return <a href="/cart">
                 <div><i className="far fa-shopping-cart fa-lg"></i></div>
                 <div>{curState}</div>
-            </a>
+            </a>;
+        }
+    }
+
+    render() {
+        return (
+            <span>{this.renderContent()}</span>
         );
     }
 
 }
 
-export default CartIcon;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(CartIcon);

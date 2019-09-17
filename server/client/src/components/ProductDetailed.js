@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import { connect } from 'react-redux';
 
 class DetailsContent extends React.Component {
 
@@ -66,6 +67,24 @@ class DetailsContent extends React.Component {
         }
     }
 
+    renderButton() {
+        if (this.props.auth == false) {
+            return "";
+        } else {
+            return <div className="product_quantity_container">
+                    <div className="product_quantity clearfix">
+                        <span>Qty</span>
+                        <input id="quantity_input" type="text" pattern="[0-9]*" value={this.state.quantity} onChange={e => this.setState({ quantity: e.target.value })}/>
+                        <div className="quantity_buttons">
+                            <div id="quantity_inc_button" onClick={this.incrementQuantity} className="quantity_inc quantity_control"><i className="fa fa-chevron-up" aria-hidden="true"></i></div>
+                            <div id="quantity_dec_button" onClick={this.decrementQuantity} className="quantity_dec quantity_control"><i className="fa fa-chevron-down" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                    <div className="button cart_button" onClick={this.handleClick}><a href="/cart">Add to cart</a></div>
+                </div>;
+        }
+    }
+
     render() {
 
         return (
@@ -80,18 +99,7 @@ class DetailsContent extends React.Component {
                 <div className="details_text">
                     <p>{this.props.description}</p>
                 </div>
-
-                <div className="product_quantity_container">
-                    <div className="product_quantity clearfix">
-                        <span>Qty</span>
-                        <input id="quantity_input" type="text" pattern="[0-9]*" value={this.state.quantity} onChange={e => this.setState({ quantity: e.target.value })}/>
-                        <div className="quantity_buttons">
-                            <div id="quantity_inc_button" onClick={this.incrementQuantity} className="quantity_inc quantity_control"><i className="fa fa-chevron-up" aria-hidden="true"></i></div>
-                            <div id="quantity_dec_button" onClick={this.decrementQuantity} className="quantity_dec quantity_control"><i className="fa fa-chevron-down" aria-hidden="true"></i></div>
-                        </div>
-                    </div>
-                    <div className="button cart_button" onClick={this.handleClick}><a href="/cart">Add to cart</a></div>
-                </div>
+                {this.renderButton()}
             </div>
         ); 
     } 
@@ -210,4 +218,8 @@ class ProductDetailed extends React.Component {
     } 
 } 
 
-export default ProductDetailed;
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(ProductDetailed);
