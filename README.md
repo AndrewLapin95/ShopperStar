@@ -1,5 +1,5 @@
 # ShopperStar
-Shopperstar is an online store that consists of 6 services (SpringBoot) in the backend and a decoupled frontend (React). It is deployed to an EC2 instance. CI/CD pipeline was set up for the project in AWS CodeBuild and AWS CodeDeploy.
+ShopperStar is an online store that consists of 6 services (SpringBoot) in the backend and a decoupled frontend (React). It is deployed to an AWS EC2 instance (along with AWS S3, AWS Route53, and Nginx). CI/CD pipeline was set up for the project in AWS CodeBuild and AWS CodeDeploy.
 
 ![Alt](images/diagram.png)
 
