@@ -6,6 +6,7 @@ dev.js
 .DS_Store
 server/.DS_Store
 .metadata
+**/application.properties
 
 **/HELP.md
 **/target/
